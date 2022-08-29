@@ -18,6 +18,10 @@
  */
 package tech.jhipster.service.filter;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.math.BigDecimal;
+
 /**
  * Filter class for {@link java.lang.Double} type attributes.
  *
@@ -31,6 +35,15 @@ public class DoubleFilter extends RangeFilter<Double> {
      * <p>Constructor for DoubleFilter.</p>
      */
     public DoubleFilter() {
+    }
+
+    public DoubleFilter(String value) {
+        if (StringUtils.isNotBlank(value)) {
+            String number = value.replace(".", "");
+            if (StringUtils.isNumeric(number)) {
+                this.setEquals(Double.parseDouble(value));
+            }
+        }
     }
 
     /**

@@ -19,6 +19,8 @@
 
 package tech.jhipster.service.filter;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Filter class for {@link java.lang.Long} type attributes.
  *
@@ -32,6 +34,14 @@ public class LongFilter extends RangeFilter<Long> {
      * <p>Constructor for LongFilter.</p>
      */
     public LongFilter() {
+    }
+
+    public LongFilter(String value) {
+        if (StringUtils.isNotBlank(value)) {
+            if (StringUtils.isNumeric(value)) {
+                this.setEquals(Long.parseLong(value));
+            }
+        }
     }
 
     /**

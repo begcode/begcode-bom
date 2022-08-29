@@ -19,6 +19,8 @@
 
 package tech.jhipster.service.filter;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Filter class for {@link java.lang.Integer} type attributes.
  *
@@ -32,6 +34,14 @@ public class IntegerFilter extends RangeFilter<Integer> {
      * <p>Constructor for IntegerFilter.</p>
      */
     public IntegerFilter() {
+    }
+
+    public IntegerFilter(String value) {
+        if (StringUtils.isNotBlank(value)) {
+            if (StringUtils.isNumeric(value)) {
+                this.setEquals(Integer.parseInt(value));
+            }
+        }
     }
 
     /**

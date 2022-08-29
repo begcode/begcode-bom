@@ -19,6 +19,7 @@
 
 package tech.jhipster.service.filter;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -38,6 +39,12 @@ public class InstantFilter extends RangeFilter<Instant> {
      * <p>Constructor for InstantFilter.</p>
      */
     public InstantFilter() {
+    }
+
+    public InstantFilter(String value) {
+        if (StringUtils.isNotBlank(value)) {
+            this.setEquals(Instant.parse(value));
+        }
     }
 
     /**

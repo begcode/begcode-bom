@@ -19,6 +19,8 @@
 
 package tech.jhipster.service.filter;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Filter class for {@link java.lang.Short} type attributes.
  *
@@ -32,6 +34,14 @@ public class ShortFilter extends RangeFilter<Short> {
      * <p>Constructor for ShortFilter.</p>
      */
     public ShortFilter() {
+    }
+
+    public ShortFilter(String value) {
+        if (StringUtils.isNotBlank(value)) {
+            if (StringUtils.isNumeric(value)) {
+                this.setEquals(Short.parseShort(value));
+            }
+        }
     }
 
     /**

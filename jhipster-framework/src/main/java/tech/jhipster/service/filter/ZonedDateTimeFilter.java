@@ -22,8 +22,17 @@ package tech.jhipster.service.filter;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
+import java.time.chrono.IsoChronology;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.ResolverStyle;
+import java.util.Arrays;
 import java.util.List;
+
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_TIME;
 
 /**
  * Filter class for {@link java.time.ZonedDateTime} type attributes.
@@ -38,6 +47,18 @@ public class ZonedDateTimeFilter extends RangeFilter<ZonedDateTime> {
      * <p>Constructor for ZonedDateTimeFilter.</p>
      */
     public ZonedDateTimeFilter() {
+    }
+
+    public ZonedDateTimeFilter(String[] values) {
+        if (values != null && values.length > 0) {
+            ZonedDateTime[] zonedDateTimes = Arrays
+                .stream(values)
+                .map(value -> ZonedDateTime.parse(value, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                .toArray(ZonedDateTime[]::new);
+            if (zonedDateTimes.length > 0) {
+                this.setBetween(zonedDateTimes);
+            }
+        }
     }
 
     /**

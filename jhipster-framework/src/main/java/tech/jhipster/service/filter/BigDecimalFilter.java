@@ -18,6 +18,8 @@
  */
 package tech.jhipster.service.filter;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigDecimal;
 
 /**
@@ -33,6 +35,15 @@ public class BigDecimalFilter extends RangeFilter<BigDecimal> {
      * <p>Constructor for BigDecimalFilter.</p>
      */
     public BigDecimalFilter() {
+    }
+
+    public BigDecimalFilter(String value) {
+        if (StringUtils.isNotBlank(value)) {
+            String number = value.replace(".", "");
+            if (StringUtils.isNumeric(number)) {
+                this.setEquals(new BigDecimal(value));
+            }
+        }
     }
 
     /**

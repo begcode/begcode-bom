@@ -9,31 +9,31 @@
         <relativePath />
     </parent>
 
-    <groupId>tech.jhipster</groupId>
+    <groupId>com.begcode</groupId>
     <artifactId>jhipster-parent</artifactId>
     <version>7.9.2</version>
     <packaging>pom</packaging>
-    <name>JHipster server-side parent POM</name>
-    <url>https://github.com/jhipster/jhipster-bom/</url>
+    <name>BegCode server-side parent POM</name>
+    <url>https://github.com/begcode/begcode-bom/</url>
 
     <licenses>
         <license>
             <name>Apache License, version 2.0</name>
-            <url>https://github.com/jhipster/jhipster-bom/blob/main/LICENSE.txt</url>
+            <url>https://github.com/begcode/begcode-bom/blob/main/LICENSE.txt</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
     <organization>
-        <name>JHipster</name>
-        <url>https://www.jhipster.tech</url>
+        <name>BegCode</name>
+        <url>https://www.begcode.com</url>
     </organization>
     <developers>
         <developer>
-            <id>jdubois</id>
-            <name>Julien Dubois</name>
-            <url>http://www.julien-dubois.com/</url>
-            <organization>JHipster</organization>
-            <organizationUrl>https://www.jhipster.tech/</organizationUrl>
+            <id>wangxinxx</id>
+            <name>Wang Xin</name>
+            <url>http://www.wangxinxx.com/</url>
+            <organization>BegCode</organization>
+            <organizationUrl>https://www.begcode.com/</organizationUrl>
         </developer>
         <!-- The JHipster core team is listed at https://www.jhipster.tech/team/ -->
     </developers>
@@ -72,8 +72,8 @@
     </properties>
 
     <scm>
-        <connection>scm:git:https://github.com/jhipster/jhipster-bom/</connection>
-        <url>https://github.com/jhipster/jhipster-bom/</url>
+        <connection>scm:git:https://github.com/begcode/begcode-bom/</connection>
+        <url>https://github.com/begcode/begcode-bom/</url>
     </scm>
 
     <modules>
@@ -87,17 +87,17 @@
             <activation>
                 <property>
                     <name>github</name>
-                    <value>true</value>
+<!--                    <value>true</value>-->
                 </property>
             </activation>
             <distributionManagement>
                 <snapshotRepository>
                     <id>github</id>
-                    <url>https://maven.pkg.github.com/jhipster/jhipster-bom/</url>
+                    <url>https://maven.pkg.github.com/begcode/begcode-bom/</url>
                 </snapshotRepository>
                 <repository>
                     <id>github</id>
-                    <url>https://maven.pkg.github.com/jhipster/jhipster-bom/</url>
+                    <url>https://maven.pkg.github.com/begcode/begcode-bom/</url>
                 </repository>
             </distributionManagement>
         </profile>
@@ -106,16 +106,17 @@
             <activation>
                 <property>
                     <name>!github</name>
+                    <value>true</value>
                 </property>
             </activation>
             <distributionManagement>
                 <snapshotRepository>
                     <id>ossrh</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                    <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
                 </snapshotRepository>
                 <repository>
                     <id>ossrh</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                    <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
                 </repository>
             </distributionManagement>
         </profile>
@@ -169,47 +170,51 @@
                 <artifactId>maven-gpg-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>io.github.git-commit-id</groupId>
-                <artifactId>git-commit-id-maven-plugin</artifactId>
-                <configuration>
-                    <prefix>jhipster-lib.git</prefix>
-                    <includeOnlyProperties>
-                        <includeOnlyProperty>^jhipster-lib.git.build.(time|version)$</includeOnlyProperty>
-                        <includeOnlyProperty>^jhipster-lib.git.commit.id.(abbrev|full|time)$</includeOnlyProperty>
-                        <includeOnlyProperty>^jhipster-lib.git.branch$</includeOnlyProperty>
-                        <includeOnlyProperty>^jhipster-lib.git.remote.origin.url$</includeOnlyProperty>
-                    </includeOnlyProperties>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
             </plugin>
+<!--            <plugin>-->
+<!--                <groupId>io.github.git-commit-id</groupId>-->
+<!--                <artifactId>git-commit-id-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <prefix>jhipster-lib.git</prefix>-->
+<!--                    <includeOnlyProperties>-->
+<!--                        <includeOnlyProperty>^jhipster-lib.git.build.(time|version)$</includeOnlyProperty>-->
+<!--                        <includeOnlyProperty>^jhipster-lib.git.commit.id.(abbrev|full|time)$</includeOnlyProperty>-->
+<!--                        <includeOnlyProperty>^jhipster-lib.git.branch$</includeOnlyProperty>-->
+<!--                        <includeOnlyProperty>^jhipster-lib.git.remote.origin.url$</includeOnlyProperty>-->
+<!--                    </includeOnlyProperties>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>io.github.git-commit-id</groupId>
-                    <artifactId>git-commit-id-maven-plugin</artifactId>
-                    <version>${git-commit-id-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>get-the-git-infos</id>
-                            <goals>
-                                <goal>revision</goal>
-                            </goals>
-                            <phase>initialize</phase>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <verbose>true</verbose>
-                        <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                        <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
-                        <includeOnlyProperties>
-                            <includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty>
-                            <includeOnlyProperty>^git.commit.id.(abbrev|full|time)$</includeOnlyProperty>
-                            <includeOnlyProperty>^git.branch$</includeOnlyProperty>
-                            <includeOnlyProperty>^git.remote.origin.url$</includeOnlyProperty>
-                        </includeOnlyProperties>
-                        <commitIdGenerationMode>full</commitIdGenerationMode>
-                    </configuration>
-                </plugin>
+<!--                <plugin>-->
+<!--                    <groupId>io.github.git-commit-id</groupId>-->
+<!--                    <artifactId>git-commit-id-maven-plugin</artifactId>-->
+<!--                    <version>${git-commit-id-maven-plugin.version}</version>-->
+<!--                    <executions>-->
+<!--                        <execution>-->
+<!--                            <id>get-the-git-infos</id>-->
+<!--                            <goals>-->
+<!--                                <goal>revision</goal>-->
+<!--                            </goals>-->
+<!--                            <phase>initialize</phase>-->
+<!--                        </execution>-->
+<!--                    </executions>-->
+<!--                    <configuration>-->
+<!--                        <verbose>true</verbose>-->
+<!--                        <generateGitPropertiesFile>true</generateGitPropertiesFile>-->
+<!--                        <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>-->
+<!--                        <includeOnlyProperties>-->
+<!--                            <includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty>-->
+<!--                            <includeOnlyProperty>^git.commit.id.(abbrev|full|time)$</includeOnlyProperty>-->
+<!--                            <includeOnlyProperty>^git.branch$</includeOnlyProperty>-->
+<!--                            <includeOnlyProperty>^git.remote.origin.url$</includeOnlyProperty>-->
+<!--                        </includeOnlyProperties>-->
+<!--                        <commitIdGenerationMode>full</commitIdGenerationMode>-->
+<!--                    </configuration>-->
+<!--                </plugin>-->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-deploy-plugin</artifactId>
@@ -246,7 +251,7 @@
                                             <limit>
                                                 <counter>COMPLEXITY</counter>
                                                 <value>COVEREDRATIO</value>
-                                                <minimum>0.62</minimum>
+                                                <minimum>0.5</minimum>
                                             </limit>
                                         </limits>
                                     </rule>
@@ -325,6 +330,12 @@
                             </goals>
                         </execution>
                     </executions>
+                    <configuration>
+                        <gpgArguments>
+                            <arg>--pinentry-mode</arg>
+                            <arg>loopback</arg>
+                        </gpgArguments>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -397,7 +408,7 @@
                     <extensions>true</extensions>
                     <configuration>
                         <serverId>ossrh</serverId>
-                        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                        <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                         <autoReleaseAfterClose>true</autoReleaseAfterClose>
                     </configuration>
                 </plugin>
@@ -428,6 +439,11 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>${versions-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.2.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
