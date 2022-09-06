@@ -51,6 +51,10 @@ public class Filter<FIELD_TYPE> implements Serializable {
     public Filter() {
     }
 
+    public Filter(FIELD_TYPE value) {
+        this.equals = value;
+    }
+
     /**
      * <p>Constructor for Filter.</p>
      *

@@ -19,6 +19,7 @@
 
 package tech.jhipster.service.filter;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -57,6 +58,7 @@ public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> exte
     private FIELD_TYPE lessThan;
     private FIELD_TYPE greaterThanOrEqual;
     private FIELD_TYPE lessThanOrEqual;
+    private FIELD_TYPE[] between;
 
     /**
      * <p>Constructor for RangeFilter.</p>
@@ -75,6 +77,7 @@ public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> exte
         lessThan = filter.lessThan;
         greaterThanOrEqual = filter.greaterThanOrEqual;
         lessThanOrEqual = filter.lessThanOrEqual;
+        this.between = filter.between;
     }
 
     /** {@inheritDoc} */
@@ -163,6 +166,14 @@ public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> exte
         return this;
     }
 
+    public FIELD_TYPE[] getBetween() {
+        return between;
+    }
+
+    public void setBetween(FIELD_TYPE[] between) {
+        this.between = between;
+    }
+
     /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
@@ -179,7 +190,8 @@ public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> exte
         return Objects.equals(greaterThan, that.greaterThan) &&
             Objects.equals(lessThan, that.lessThan) &&
             Objects.equals(greaterThanOrEqual, that.greaterThanOrEqual) &&
-            Objects.equals(lessThanOrEqual, that.lessThanOrEqual);
+            Objects.equals(lessThanOrEqual, that.lessThanOrEqual) &&
+            Arrays.equals(between, that.between);
     }
 
     /** {@inheritDoc} */
@@ -201,6 +213,7 @@ public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> exte
             + (getLessThan() != null ? "lessThan=" + getLessThan() + ", " : "")
             + (getGreaterThanOrEqual() != null ? "greaterThanOrEqual=" + getGreaterThanOrEqual() + ", " : "")
             + (getLessThanOrEqual() != null ? "lessThanOrEqual=" + getLessThanOrEqual() : "")
+            + (getBetween() != null ? "between=" + Arrays.toString(getBetween()) : "")
             + "]";
     }
 

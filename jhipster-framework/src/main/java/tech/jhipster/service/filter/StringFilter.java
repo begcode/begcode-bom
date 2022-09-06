@@ -19,6 +19,8 @@
 
 package tech.jhipster.service.filter;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Objects;
 
 /**
@@ -41,11 +43,19 @@ public class StringFilter extends Filter<String> {
 
     private String contains;
     private String doesNotContain;
+    private String containsLeft;
+    private String containsRight;
 
     /**
      * <p>Constructor for StringFilter.</p>
      */
     public StringFilter() {
+    }
+
+    public StringFilter(String value) {
+        if (StringUtils.isNotBlank(value)) {
+            this.setContains(value);
+        }
     }
 
     /**
@@ -105,6 +115,24 @@ public class StringFilter extends Filter<String> {
         return this;
     }
 
+    public String getContainsLeft() {
+        return containsLeft;
+    }
+
+    public StringFilter setContainsLeft(String containsLeft) {
+        this.containsLeft = containsLeft;
+        return this;
+    }
+
+    public String getContainsRight() {
+        return containsRight;
+    }
+
+    public StringFilter setContainsRight(String containsRight) {
+        this.containsRight = containsRight;
+        return this;
+    }
+
     /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
@@ -119,6 +147,8 @@ public class StringFilter extends Filter<String> {
         }
         StringFilter that = (StringFilter) o;
         return Objects.equals(contains, that.contains) &&
+            Objects.equals(containsLeft, that.containsLeft) &&
+            Objects.equals(containsRight, that.containsRight) &&
             Objects.equals(doesNotContain, that.doesNotContain);
     }
 
@@ -138,6 +168,8 @@ public class StringFilter extends Filter<String> {
             + (getIn() != null ? "in=" + getIn() + ", " : "")
             + (getNotIn() != null ? "notIn=" + getNotIn() + ", " : "")
             + (getContains() != null ? "contains=" + getContains() + ", " : "")
+            + (getContainsLeft() != null ? "containsLeft=" + getContainsLeft() + ", " : "")
+            + (getContainsRight() != null ? "containsRight=" + getContainsRight() + ", " : "")
             + (getDoesNotContain() != null ? "doesNotContain=" + getDoesNotContain() : "")
             + "]";
     }

@@ -3,36 +3,36 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>tech.jhipster</groupId>
+        <groupId>com.begcode</groupId>
         <artifactId>jhipster-dependencies</artifactId>
-        <version>7.9.3-SNAPSHOT</version>
+        <version>7.9.3</version>
         <relativePath>../jhipster-dependencies/pom.xml</relativePath>
     </parent>
 
     <artifactId>jhipster-framework</artifactId>
     <packaging>jar</packaging>
-    <name>JHipster server-side framework</name>
-    <description>Server-side library used by applications created with the JHipster generator, see https://www.jhipster.tech/ for more information on JHipster</description>
-    <url>https://github.com/jhipster/jhipster-bom/</url>
+    <name>BegCode server-side framework</name>
+    <description>Server-side library used by applications created with the BegCode generator, see https://www.begcode.com/ for more information on BegCode</description>
+    <url>https://github.com/begcode/begcode-bom/</url>
 
     <licenses>
         <license>
             <name>Apache License, version 2.0</name>
-            <url>https://github.com/jhipster/jhipster-bom/blob/main/LICENSE.txt</url>
+            <url>https://github.com/jhipster/begcode-bom/blob/main/LICENSE.txt</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
     <organization>
-        <name>JHipster</name>
-        <url>https://www.jhipster.tech/</url>
+        <name>BegCode</name>
+        <url>https://www.begcode.com/</url>
     </organization>
     <developers>
         <developer>
-            <id>jdubois</id>
-            <name>Julien Dubois</name>
-            <url>http://www.julien-dubois.com/</url>
-            <organization>JHipster</organization>
-            <organizationUrl>https://www.jhipster.tech/</organizationUrl>
+            <id>wangxinxx</id>
+            <name>Wang Xin</name>
+            <url>http://www.wangxinxx.com/</url>
+            <organization>BegCode</organization>
+            <organizationUrl>https://www.begcode.com/</organizationUrl>
         </developer>
         <!-- The JHipster core team is listed at https://www.jhipster.tech/team/ -->
     </developers>
@@ -121,6 +121,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.huibozhixin</groupId>
+            <artifactId>diboot-core</artifactId>
             <optional>true</optional>
         </dependency>
         <dependency>

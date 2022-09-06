@@ -18,6 +18,8 @@
  */
 package tech.jhipster.service.filter;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.UUID;
 
 /**
@@ -33,6 +35,12 @@ public class UUIDFilter extends Filter<UUID> {
      * <p>Constructor for UUIDFilter.</p>
      */
     public UUIDFilter() {
+    }
+
+    public UUIDFilter(String value) {
+        if (StringUtils.isNotBlank(value)) {
+            this.setEquals(UUID.fromString(value));
+        }
     }
 
     /**

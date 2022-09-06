@@ -23,7 +23,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Filter class for {@link java.time.LocalDate} type attributes.
@@ -38,6 +42,18 @@ public class LocalDateFilter extends RangeFilter<LocalDate> {
      * <p>Constructor for LocalDateFilter.</p>
      */
     public LocalDateFilter() {
+    }
+
+    public LocalDateFilter(String[] values) {
+        if (values != null && values.length > 0) {
+            LocalDate[] dates = Arrays
+                .stream(values)
+                .map(value -> LocalDate.parse(value, DateTimeFormatter.ISO_LOCAL_DATE))
+                .toArray(LocalDate[]::new);
+            if (dates.length > 0) {
+                this.setBetween(dates);
+            }
+        }
     }
 
     /**

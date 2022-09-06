@@ -18,6 +18,8 @@
  */
 package tech.jhipster.service.filter;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Filter class for {@link java.lang.Float} type attributes.
  *
@@ -31,6 +33,15 @@ public class FloatFilter extends RangeFilter<Float> {
      * <p>Constructor for FloatFilter.</p>
      */
     public FloatFilter() {
+    }
+
+    public FloatFilter(String value) {
+        if (StringUtils.isNotBlank(value)) {
+            String number = value.replace(".", "");
+            if (StringUtils.isNumeric(number)) {
+                this.setEquals(Float.parseFloat(value));
+            }
+        }
     }
 
     /**

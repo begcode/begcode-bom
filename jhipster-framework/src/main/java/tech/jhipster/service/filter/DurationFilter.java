@@ -18,6 +18,8 @@
  */
 package tech.jhipster.service.filter;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.time.Duration;
 
 /**
@@ -34,6 +36,13 @@ public class DurationFilter extends RangeFilter<Duration> {
      */
     public DurationFilter() {
     }
+
+    public DurationFilter(String value) {
+        if (StringUtils.isNotBlank(value)) {
+            this.setEquals(Duration.parse(value));
+        }
+    }
+
 
     /**
      * <p>Constructor for DurationFilter.</p>

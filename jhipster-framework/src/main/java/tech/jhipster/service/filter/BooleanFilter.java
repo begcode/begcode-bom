@@ -18,6 +18,8 @@
  */
 package tech.jhipster.service.filter;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Class for filtering attributes with {@link java.lang.Boolean} type. It can be added to a criteria class as a member, to support
  * the following query parameters:
@@ -38,6 +40,12 @@ public class BooleanFilter extends Filter<Boolean> {
      * <p>Constructor for BooleanFilter.</p>
      */
     public BooleanFilter() {
+    }
+
+    public BooleanFilter(String value) {
+        if (StringUtils.isNotBlank(value)) {
+            this.setEquals(Boolean.valueOf(value));
+        }
     }
 
     /**
