@@ -10,7 +10,7 @@ This project is used by the JHipster generator. This is the Bill of Materials an
 - jhipster-framework
 
 If the current version is SNAPSHOT then to use this SNAPSHOT version:
-
+mvn clean deploy -P sonatype-oss-release Darguments="gpg.passphrase=你的密码"
 - clone this project
 - run `./mvnw install -Dgpg.skip=true`, on Windows run `.\mvnw.cmd install -D"gpg.skip=true"`
 

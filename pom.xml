@@ -11,7 +11,7 @@
 
     <groupId>com.begcode</groupId>
     <artifactId>jhipster-parent</artifactId>
-    <version>7.9.3</version>
+    <version>7.9.4</version>
     <packaging>pom</packaging>
     <name>BegCode server-side parent POM</name>
     <url>https://github.com/begcode/begcode-bom/</url>
@@ -251,7 +251,7 @@
                                             <limit>
                                                 <counter>COMPLEXITY</counter>
                                                 <value>COVEREDRATIO</value>
-                                                <minimum>0.5</minimum>
+                                                <minimum>0.3</minimum>
                                             </limit>
                                         </limits>
                                     </rule>

@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.begcode</groupId>
         <artifactId>jhipster-parent</artifactId>
-        <version>7.9.3</version>
+        <version>7.9.4</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -81,7 +81,7 @@
         <testng.version>7.6.1</testng.version>
         <xmemcached.version>2.4.7</xmemcached.version>
         <xmemcached-provider.version>4.1.3</xmemcached-provider.version>
-        <diboot-core.version>2.3.0-hbzx4</diboot-core.version>
+        <begcode-diboot-core.version>2.7.1</begcode-diboot-core.version>
     </properties>
 
     <dependencyManagement>
@@ -442,9 +442,9 @@
                 <version>${spring-boot.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.huibozhixin</groupId>
+                <groupId>com.begcode</groupId>
                 <artifactId>diboot-core</artifactId>
-                <version>${diboot-core.version}</version>
+                <version>${begcode-diboot-core.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>

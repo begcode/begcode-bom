@@ -19,6 +19,9 @@
 
 package tech.jhipster.service.filter;
 
+import tech.jhipster.service.aggregate.Aggregate;
+import tech.jhipster.service.aggregate.GroupByExpress;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +48,10 @@ public class Filter<FIELD_TYPE> implements Serializable {
     private List<FIELD_TYPE> in;
     private List<FIELD_TYPE> notIn;
 
+    private Aggregate aggregate;
+
+    private GroupByExpress groupBy;
+
     /**
      * <p>Constructor for Filter.</p>
      */
@@ -64,6 +71,8 @@ public class Filter<FIELD_TYPE> implements Serializable {
         equals = filter.equals;
         notEquals = filter.notEquals;
         specified = filter.specified;
+        aggregate = filter.aggregate;
+        groupBy = filter.groupBy;
         in = filter.in == null ? null : new ArrayList<>(filter.in);
         notIn = filter.notIn == null ? null : new ArrayList<>(filter.notIn);
     }
@@ -177,6 +186,22 @@ public class Filter<FIELD_TYPE> implements Serializable {
         return this;
     }
 
+    public Aggregate getAggregate() {
+        return aggregate;
+    }
+
+    public void setAggregate(Aggregate aggregate) {
+        this.aggregate = aggregate;
+    }
+
+    public GroupByExpress getGroupBy() {
+        return groupBy;
+    }
+
+    public void setGroupBy(GroupByExpress groupBy) {
+        this.groupBy = groupBy;
+    }
+
     /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
@@ -191,13 +216,15 @@ public class Filter<FIELD_TYPE> implements Serializable {
                 Objects.equals(notEquals, filter.notEquals) &&
                 Objects.equals(specified, filter.specified) &&
                 Objects.equals(in, filter.in) &&
+                Objects.equals(aggregate, filter.aggregate) &&
+                Objects.equals(groupBy, filter.groupBy) &&
                 Objects.equals(notIn, filter.notIn);
     }
 
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return Objects.hash(equals, notEquals, specified, in, notIn);
+        return Objects.hash(equals, notEquals, specified, in, notIn, aggregate, groupBy);
     }
 
     /** {@inheritDoc} */
@@ -207,6 +234,8 @@ public class Filter<FIELD_TYPE> implements Serializable {
                 + (getEquals() != null ? "equals=" + getEquals() + ", " : "")
                 + (getNotEquals() != null ? "notEquals=" + getNotEquals() + ", " : "")
                 + (getSpecified() != null ? "specified=" + getSpecified() + ", " : "")
+                + (getAggregate() != null ? "aggregate=" + getAggregate() + ", " : "")
+                + (getGroupBy() != null ? "groupBy=" + getGroupBy() + ", " : "")
                 + (getIn() != null ? "in=" + getIn() + ", " : "")
                 + (getNotIn() != null ? "notIn=" + getNotIn() : "")
                 + "]";

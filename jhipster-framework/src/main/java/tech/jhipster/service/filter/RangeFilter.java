@@ -19,6 +19,9 @@
 
 package tech.jhipster.service.filter;
 
+import tech.jhipster.service.aggregate.DateTimeGroupBy;
+import tech.jhipster.service.aggregate.NumberAggregate;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -60,6 +63,10 @@ public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> exte
     private FIELD_TYPE lessThanOrEqual;
     private FIELD_TYPE[] between;
 
+    private NumberAggregate aggregate;
+
+    private DateTimeGroupBy groupBy;
+
     /**
      * <p>Constructor for RangeFilter.</p>
      */
@@ -77,7 +84,9 @@ public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> exte
         lessThan = filter.lessThan;
         greaterThanOrEqual = filter.greaterThanOrEqual;
         lessThanOrEqual = filter.lessThanOrEqual;
-        this.between = filter.between;
+        between = filter.between;
+        aggregate = filter.aggregate;
+        groupBy = filter.groupBy;
     }
 
     /** {@inheritDoc} */
@@ -174,6 +183,23 @@ public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> exte
         this.between = between;
     }
 
+    public NumberAggregate getAggregate() {
+        return aggregate;
+    }
+
+    public void setAggregate(NumberAggregate aggregate) {
+        this.aggregate = aggregate;
+    }
+
+    @Override
+    public DateTimeGroupBy getGroupBy() {
+        return groupBy;
+    }
+
+    public void setGroupBy(DateTimeGroupBy groupBy) {
+        this.groupBy = groupBy;
+    }
+
     /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
@@ -191,13 +217,15 @@ public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> exte
             Objects.equals(lessThan, that.lessThan) &&
             Objects.equals(greaterThanOrEqual, that.greaterThanOrEqual) &&
             Objects.equals(lessThanOrEqual, that.lessThanOrEqual) &&
+            Objects.equals(aggregate, that.aggregate) &&
+            Objects.equals(groupBy, that.groupBy) &&
             Arrays.equals(between, that.between);
     }
 
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), greaterThan, lessThan, greaterThanOrEqual, lessThanOrEqual);
+        return Objects.hash(super.hashCode(), greaterThan, lessThan, greaterThanOrEqual, lessThanOrEqual, aggregate, groupBy, Arrays.hashCode(between));
     }
 
     /** {@inheritDoc} */
@@ -213,6 +241,8 @@ public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> exte
             + (getLessThan() != null ? "lessThan=" + getLessThan() + ", " : "")
             + (getGreaterThanOrEqual() != null ? "greaterThanOrEqual=" + getGreaterThanOrEqual() + ", " : "")
             + (getLessThanOrEqual() != null ? "lessThanOrEqual=" + getLessThanOrEqual() : "")
+            + (getAggregate() != null ? "aggregate=" + getAggregate() : "")
+            + (getGroupBy() != null ? "groupBy=" + getGroupBy() : "")
             + (getBetween() != null ? "between=" + Arrays.toString(getBetween()) : "")
             + "]";
     }
