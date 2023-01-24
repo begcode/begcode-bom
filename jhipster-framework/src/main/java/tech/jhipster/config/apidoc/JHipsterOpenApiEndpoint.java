@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2022 the original author or authors from the JHipster project.
+ * Copyright 2016-2023 the original author or authors from the JHipster project.
  *
  * This file is part of the JHipster project, see https://www.jhipster.tech/
  * for more information.
@@ -19,17 +19,17 @@
 
 package tech.jhipster.config.apidoc;
 
-import static org.springdoc.core.Constants.DEFAULT_GROUP_NAME;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.springdoc.core.SpringDocConfigProperties;
-import org.springdoc.core.SpringDocConfigProperties.GroupConfig;
+import org.springdoc.core.properties.SpringDocConfigProperties;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 import org.springframework.boot.actuate.endpoint.web.annotation.WebEndpoint;
+
+import static org.springdoc.core.utils.Constants.DEFAULT_GROUP_NAME;
+import static org.springdoc.core.properties.SpringDocConfigProperties.GroupConfig;
 
 /**
  * <p>JHipsterOpenApiEndpoint class.</p>
@@ -43,7 +43,7 @@ public class JHipsterOpenApiEndpoint {
     /**
      * <p>Constructor for JHipsterOpenApiEndpoint.</p>
      *
-     * @param springDocConfigProperties a {@link org.springdoc.core.SpringDocConfigProperties} object.
+     * @param springDocConfigProperties a {@link org.springdoc.core.properties.SpringDocConfigProperties} object.
      */
     public JHipsterOpenApiEndpoint(SpringDocConfigProperties springDocConfigProperties, String appName) {
         this.springDocConfigProperties = springDocConfigProperties;

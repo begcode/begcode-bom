@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2022 the original author or authors from the JHipster project.
+ * Copyright 2016-2023 the original author or authors from the JHipster project.
  *
  * This file is part of the JHipster project, see https://www.jhipster.tech/
  * for more information.
@@ -19,15 +19,15 @@
 
 package tech.jhipster.config;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -632,21 +632,23 @@ class JHipsterPropertiesTest {
     @Test
     void testApiDocsDefaultIncludePattern() {
         JHipsterProperties.ApiDocs obj = properties.getApiDocs();
-        String val = JHipsterDefaults.ApiDocs.defaultIncludePattern;
+        String[] val = JHipsterDefaults.ApiDocs.defaultIncludePattern;
         assertThat(obj.getDefaultIncludePattern()).isEqualTo(val);
-        val = "1" + val;
-        obj.setDefaultIncludePattern(val);
-        assertThat(obj.getDefaultIncludePattern()).isEqualTo(val);
+        String[] newVal = Arrays.copyOf(val, val.length + 1);
+        newVal[newVal.length - 1] = "1";
+        obj.setDefaultIncludePattern(newVal);
+        assertThat(obj.getDefaultIncludePattern()).isEqualTo(newVal);
     }
 
     @Test
     void testApiDocsManagementIncludePattern() {
         JHipsterProperties.ApiDocs obj = properties.getApiDocs();
-        String val = JHipsterDefaults.ApiDocs.managementIncludePattern;
+        String[] val = JHipsterDefaults.ApiDocs.managementIncludePattern;
         assertThat(obj.getManagementIncludePattern()).isEqualTo(val);
-        val = "1" + val;
-        obj.setManagementIncludePattern(val);
-        assertThat(obj.getManagementIncludePattern()).isEqualTo(val);
+        String[] newVal = Arrays.copyOf(val, val.length + 1);
+        newVal[newVal.length - 1] = "1";
+        obj.setManagementIncludePattern(newVal);
+        assertThat(obj.getManagementIncludePattern()).isEqualTo(newVal);
     }
 
     @Test
@@ -703,17 +705,6 @@ class JHipsterPropertiesTest {
         val++;
         obj.setPort(val);
         assertThat(obj.getPort()).isEqualTo(val);
-    }
-
-    @Test
-    @Deprecated
-    void testLoggingLogstashQueueSize() {
-        JHipsterProperties.Logging.Logstash obj = properties.getLogging().getLogstash();
-        int val = JHipsterDefaults.Logging.Logstash.ringBufferSize;
-        assertThat(obj.getQueueSize()).isEqualTo(val);
-        val++;
-        obj.setQueueSize(val);
-        assertThat(obj.getQueueSize()).isEqualTo(val);
     }
 
     @Test

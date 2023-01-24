@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2022 the original author or authors from the JHipster project.
+ * Copyright 2016-2023 the original author or authors from the JHipster project.
  *
  * This file is part of the JHipster project, see https://www.jhipster.tech/
  * for more information.
@@ -22,7 +22,7 @@ package tech.jhipster.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.cors.CorsConfiguration;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -880,9 +880,9 @@ public class JHipsterProperties {
 
         private String licenseUrl = JHipsterDefaults.ApiDocs.licenseUrl;
 
-        private String defaultIncludePattern = JHipsterDefaults.ApiDocs.defaultIncludePattern;
+        private String[] defaultIncludePattern = JHipsterDefaults.ApiDocs.defaultIncludePattern;
 
-        private String managementIncludePattern = JHipsterDefaults.ApiDocs.managementIncludePattern;
+        private String[] managementIncludePattern = JHipsterDefaults.ApiDocs.managementIncludePattern;
 
         private Server[] servers = {};
 
@@ -958,19 +958,19 @@ public class JHipsterProperties {
             this.licenseUrl = licenseUrl;
         }
 
-        public String getDefaultIncludePattern() {
+        public String[] getDefaultIncludePattern() {
             return defaultIncludePattern;
         }
 
-        public void setDefaultIncludePattern(String defaultIncludePattern) {
+        public void setDefaultIncludePattern(String[] defaultIncludePattern) {
             this.defaultIncludePattern = defaultIncludePattern;
         }
 
-        public String getManagementIncludePattern() {
+        public String[] getManagementIncludePattern() {
             return managementIncludePattern;
         }
 
-        public void setManagementIncludePattern(String managementIncludePattern) {
+        public void setManagementIncludePattern(String[] managementIncludePattern) {
             this.managementIncludePattern = managementIncludePattern;
         }
 
@@ -1054,22 +1054,6 @@ public class JHipsterProperties {
 
             public void setPort(int port) {
                 this.port = port;
-            }
-
-            /*
-                queueSize is deprecated in favour of ringBufferSize
-             */
-            @Deprecated
-            public int getQueueSize() {
-                return getRingBufferSize();
-            }
-
-            /*
-                queueSize is deprecated in favour of ringBufferSize
-             */
-            @Deprecated
-            public void setQueueSize(int queueSize) {
-                setRingBufferSize(queueSize);
             }
 
             public int getRingBufferSize() {

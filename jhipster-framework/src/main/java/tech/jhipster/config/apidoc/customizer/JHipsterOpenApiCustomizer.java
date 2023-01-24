@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2022 the original author or authors from the JHipster project.
+ * Copyright 2016-2023 the original author or authors from the JHipster project.
  *
  * This file is part of the JHipster project, see https://www.jhipster.tech/
  * for more information.
@@ -27,14 +27,14 @@ import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.servers.Server;
 
-import org.springdoc.core.customizers.OpenApiCustomiser;
+import org.springdoc.core.customizers.OpenApiCustomizer;
 
 import org.springframework.core.Ordered;
 
 /**
- * A OpenApi customizer to setup {@link io.swagger.v3.oas.models.OpenAPI} with JHipster settings.
+ * A OpenApi customizer to set up {@link io.swagger.v3.oas.models.OpenAPI} with JHipster settings.
  */
-public class JHipsterOpenApiCustomizer implements OpenApiCustomiser, Ordered {
+public class JHipsterOpenApiCustomizer implements OpenApiCustomizer, Ordered {
 
     /**
      * The default order for the customizer.

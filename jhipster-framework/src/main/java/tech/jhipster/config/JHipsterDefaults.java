@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2022 the original author or authors from the JHipster project.
+ * Copyright 2016-2023 the original author or authors from the JHipster project.
  *
  * This file is part of the JHipster project, see https://www.jhipster.tech/
  * for more information.
@@ -164,8 +164,8 @@ public interface JHipsterDefaults {
         String contactEmail = null;
         String license = null;
         String licenseUrl = null;
-        String defaultIncludePattern = "/api/**";
-        String managementIncludePattern = "/management/**";
+        String[] defaultIncludePattern = {"/api/**"};
+        String[] managementIncludePattern = {"/management/**"};
         String host = null;
         String[] protocols = {};
         boolean useDefaultResponseMessages = true;

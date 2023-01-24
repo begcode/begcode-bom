@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.begcode</groupId>
         <artifactId>jhipster-parent</artifactId>
-        <version>7.9.4.0</version>
+        <version>8.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -39,46 +39,40 @@
 
     <properties>
         <!-- Dependency versions -->
-        <aws-java-sdk-bom.version>1.12.295</aws-java-sdk-bom.version>
+        <aws-java-sdk-bom.version>1.12.389</aws-java-sdk-bom.version>
         <azure-spring-cloud-client.version>2.4.0</azure-spring-cloud-client.version>
         <azure-applicationinsights-spring-boot-starter.version>2.6.4</azure-applicationinsights-spring-boot-starter.version>
-        <bucket4j.version>7.6.0</bucket4j.version>
+        <bucket4j.version>8.1.1</bucket4j.version>
         <cassandra-unit-spring.version>4.3.1.0</cassandra-unit-spring.version>
-        <couchbase-client.version>3.3.3</couchbase-client.version>
-        <couchmove.version>3.3</couchmove.version>
-        <cucumber-jvm.version>7.6.0</cucumber-jvm.version>
+        <couchbase-client.version>3.4.2</couchbase-client.version>
+        <couchmove.version>3.3.2</couchmove.version>
+        <cucumber-jvm.version>7.11.0</cucumber-jvm.version>
         <commons-io.version>2.11.0</commons-io.version>
         <commons-collections.version>4.4</commons-collections.version>
-        <feign-reactor-bom.version>3.2.5</feign-reactor-bom.version>
+        <feign-reactor-bom.version>3.2.6</feign-reactor-bom.version>
         <guava.version>31.1-jre</guava.version>
-        <hazelcast.version>5.1.2</hazelcast.version>
+        <hazelcast.version>5.1.5</hazelcast.version>
         <hazelcast-hibernate5.version>2.2.1</hazelcast-hibernate5.version>
-        <infinispan.version>13.0.10.Final</infinispan.version>
+        <!-- To pull in a newer version than Spring Boot with Nonnull -->
+        <jakarta-annotation.version>2.1.1</jakarta-annotation.version>
         <jjwt.version>0.11.5</jjwt.version>
-        <junit-platform-console.version>1.8.2</junit-platform-console.version>
+        <junit-platform-console.version>1.9.2</junit-platform-console.version>
         <logstash-logback-encoder.version>7.2</logstash-logback-encoder.version>
         <lz4-java.version>1.8.0</lz4-java.version>
-        <mapstruct.version>1.5.2.Final</mapstruct.version>
-        <mongock.version>5.1.5</mongock.version>
-        <mongodb.version>4.2.3</mongodb.version>
-        <mssql-jdbc.version>11.2.0.jre8</mssql-jdbc.version>
-        <neo4j-migrations.version>1.10.1</neo4j-migrations.version>
-        <mysql-jdbc.version>8.0.30</mysql-jdbc.version>
-        <oracle-jdbc.version>21.7.0.0</oracle-jdbc.version>
-        <problem-spring.version>0.27.0</problem-spring.version>
-        <problem-spring-web.version>${problem-spring.version}</problem-spring-web.version>
-        <problem-spring-webflux.version>${problem-spring.version}</problem-spring-webflux.version>
-        <prometheus-simpleclient.version>0.15.0</prometheus-simpleclient.version>
-        <redisson.version>3.17.6</redisson.version>
-        <reflections.version>0.10.1</reflections.version>
-        <spring-cloud.version>2021.0.3</spring-cloud.version>
-        <spring-cloud-netflix.version>2.2.10.RELEASE</spring-cloud-netflix.version>
-        <spring-cloud-security.version>2.2.5.RELEASE</spring-cloud-security.version>
+        <mapstruct.version>1.5.3.Final</mapstruct.version>
+        <mongock.version>5.2.2</mongock.version>
+        <mssql-jdbc.version>11.2.3.jre17</mssql-jdbc.version>
+        <neo4j-migrations.version>2.1.0</neo4j-migrations.version>
+        <mysql-jdbc.version>8.0.32</mysql-jdbc.version>
+        <oracle-jdbc.version>21.8.0.0</oracle-jdbc.version>
+        <redisson.version>3.19.1</redisson.version>
+        <reflections.version>0.10.2</reflections.version>
+        <spring-cloud.version>2022.0.0</spring-cloud.version>
         <spring-data-neo4j-rx.version>1.1.1</spring-data-neo4j-rx.version>
         <spring-security-jwt.version>1.1.1.RELEASE</spring-security-jwt.version>
-        <springdocs.version>1.6.11</springdocs.version>
-        <testcontainers.version>1.17.3</testcontainers.version>
-        <testng.version>7.6.1</testng.version>
+        <springdocs.version>2.0.2</springdocs.version>
+        <testcontainers.version>1.17.6</testcontainers.version>
+        <testng.version>7.7.1</testng.version>
         <xmemcached.version>2.4.7</xmemcached.version>
         <xmemcached-provider.version>4.1.3</xmemcached-provider.version>
         <begcode-diboot-core.version>2.7.1</begcode-diboot-core.version>
@@ -91,14 +85,13 @@
                 <artifactId>jhipster-framework</artifactId>
                 <version>${jhipster-framework.version}</version>
             </dependency>
-
             <dependency>
-                <groupId>com.github.vladimir-bukhtoyarov</groupId>
+                <groupId>com.bucket4j</groupId>
                 <artifactId>bucket4j-core</artifactId>
                 <version>${bucket4j.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.vladimir-bukhtoyarov</groupId>
+                <groupId>com.bucket4j</groupId>
                 <artifactId>bucket4j-jcache</artifactId>
                 <version>${bucket4j.version}</version>
             </dependency>
@@ -139,6 +132,11 @@
                 <version>${cucumber-jvm.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.ehcache</groupId>
+                <artifactId>ehcache</artifactId>
+                <version>${ehcache3.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.google.code.simple-spring-memcached</groupId>
                 <artifactId>spring-cache</artifactId>
                 <version>${xmemcached-provider.version}</version>
@@ -157,11 +155,6 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson</artifactId>
                 <version>${redisson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.infinispan</groupId>
-                <artifactId>infinispan-spring-boot-starter-embedded</artifactId>
-                <version>${infinispan.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
@@ -235,47 +228,22 @@
                 <version>${mssql-jdbc.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.mongodb</groupId>
-                <artifactId>mongodb-core</artifactId>
-                <version>${mongodb.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mongodb</groupId>
-                <artifactId>mongodb-driver-reactivestreams</artifactId>
-                <version>${mongodb.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mongodb</groupId>
-                <artifactId>mongodb-driver-sync</artifactId>
-                <version>${mongodb.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.oracle.database.jdbc</groupId>
-                <artifactId>ojdbc8</artifactId>
+                <artifactId>ojdbc11</artifactId>
                 <version>${oracle-jdbc.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.zalando</groupId>
-                <artifactId>problem-spring-web</artifactId>
-                <version>${problem-spring-web.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.zalando</groupId>
-                <artifactId>problem-spring-webflux</artifactId>
-                <version>${problem-spring-webflux.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.prometheus</groupId>
-                <artifactId>simpleclient</artifactId>
-                <version>${prometheus-simpleclient.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
+                <groupId>com.mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
                 <version>${mysql-jdbc.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.hibernate</groupId>
+                <groupId>org.hibernate.orm</groupId>
+                <artifactId>hibernate-jcache</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.orm</groupId>
                 <artifactId>hibernate-jpamodelgen</artifactId>
                 <version>${hibernate.version}</version>
             </dependency>
@@ -455,23 +423,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-mongodb</artifactId>
                 <version>${spring-boot.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.mongodb</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
                 <version>${spring-boot.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.mongodb</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -660,13 +616,6 @@
                 <version>${testng.version}</version>
                 <scope>test</scope>
             </dependency>
-            <!-- Spring Cloud Netflix dependencies are no longer managed by Spring Cloud's BOM -->
-            <!-- https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2020.0-Release-Notes#breaking-changes -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-                <version>${spring-cloud-netflix.version}</version>
-            </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
@@ -695,45 +644,17 @@
             </dependency>
             <dependency>
                 <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-webmvc-core</artifactId>
-                <version>${springdocs.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-webflux-core</artifactId>
-                <version>${springdocs.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-data-rest</artifactId>
-                <version>${springdocs.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-security</artifactId>
+                <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
                 <version>${springdocs.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-native</artifactId>
+                <artifactId>springdoc-openapi-starter-webflux-api</artifactId>
+                <version>${springdocs.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-common</artifactId>
                 <version>${springdocs.version}</version>
             </dependency>
 
@@ -755,14 +676,6 @@
             </dependency>
 
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-security-dependencies</artifactId>
-                <version>${spring-cloud-security.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
                 <groupId>org.testcontainers</groupId>
                 <artifactId>testcontainers-bom</artifactId>
                 <version>${testcontainers.version}</version>
@@ -772,16 +685,8 @@
 
             <dependency>
                 <groupId>io.mongock</groupId>
-                <artifactId>mongock-community-bom</artifactId>
+                <artifactId>mongock-bom</artifactId>
                 <version>${mongock.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.infinispan</groupId>
-                <artifactId>infinispan-bom</artifactId>
-                <version>${infinispan.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

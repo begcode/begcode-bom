@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>2.7.3</version>
+        <version>3.0.2</version>
         <relativePath />
     </parent>
 
     <groupId>com.begcode</groupId>
     <artifactId>jhipster-parent</artifactId>
-    <version>7.9.4.0</version>
+    <version>8.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>BegCode server-side parent POM</name>
     <url>https://github.com/begcode/begcode-bom/</url>
@@ -40,12 +40,12 @@
 
     <properties>
         <!-- The jhipster-framework version should be the same as the artifact version above -->
-        <jhipster-framework.version>7.9.4.0</jhipster-framework.version>
+        <jhipster-framework.version>8.0.0-SNAPSHOT</jhipster-framework.version>
         <!-- The spring-boot version should be the same as the parent version above -->
-        <spring-boot.version>2.7.3</spring-boot.version>
+        <spring-boot.version>3.0.1</spring-boot.version>
 
         <!-- Build properties -->
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <maven.version>3.2.5</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -54,21 +54,21 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <!-- Plugin versions -->
-        <git-commit-id-maven-plugin.version>4.9.9</git-commit-id-maven-plugin.version>
+        <git-commit-id-maven-plugin.version>5.0.0</git-commit-id-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-deploy-plugin.version>3.0.0</maven-deploy-plugin.version>
         <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
         <maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M8</maven-failsafe-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
         <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M8</maven-surefire-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
         <properties-maven-plugin.version>1.1.0</properties-maven-plugin.version>
         <sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
-        <versions-maven-plugin.version>2.11.0</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.14.2</versions-maven-plugin.version>
     </properties>
 
     <scm>
