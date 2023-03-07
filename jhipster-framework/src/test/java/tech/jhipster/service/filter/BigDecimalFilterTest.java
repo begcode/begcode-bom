@@ -51,6 +51,9 @@ class BigDecimalFilterTest {
         assertThat(filter.getLessThan()).isNull();
         assertThat(filter.getGreaterThanOrEqual()).isNull();
         assertThat(filter.getLessThanOrEqual()).isNull();
+        // add by begcode start
+        assertThat(filter.getBetween()).isNull();
+        // add by begcode end
         assertThat(filter.toString()).isEqualTo("BigDecimalFilter []");
     }
 

@@ -31,9 +31,10 @@ public class AggregateUtil {
         }
     }
 
-    public static void buildGroupBy(GroupByExpress groupByExpress, String field, List<String> groupBys) {
+    public static void buildGroupBy(GroupByExpress groupByExpress, String field, List<String> groupBys, List<String> selects) {
         if (Objects.equals(groupByExpress.getJoin(), true)) {
             groupBys.add(field);
+            selects.add(field);
         }
     }
 
@@ -252,6 +253,7 @@ public class AggregateUtil {
             }
             if (!isAdded && Objects.equals(groupByExpress.getJoin(), Boolean.TRUE)) {
                 groupBys.add(field);
+                selects.add(field);
             }
         }
     }
