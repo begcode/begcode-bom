@@ -17,6 +17,7 @@ public class AggregateUtil {
     }
 
     public static void buildAggregate(NumberAggregate filter, String field, List<String> selects) {
+        AggregateUtil.buildAggregate((Aggregate)filter, field, selects);
         if (Objects.equals(filter.getSum(), true)) {
             selects.add("sum(" + field + ") as " + field + "_sum");
         }

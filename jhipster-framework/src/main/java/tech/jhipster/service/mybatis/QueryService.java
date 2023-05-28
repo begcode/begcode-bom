@@ -193,17 +193,14 @@ public interface QueryService<ENTITY> {
         return (
                 queryWrapper -> {
                     // 防止为空（）
-                    if (useOr) {
-                        queryWrapper.or(q -> q.eq("1", 1));
-                    } else {
-                        queryWrapper.eq("1", 1);
-                    }
+                    boolean noFilter = true;
                     if (filter.getEquals() != null) {
                         if (useOr) {
                             queryWrapper.or(q -> q.eq(field, filter.getEquals()));
                         } else {
                             queryWrapper.eq(field, filter.getEquals());
                         }
+                        noFilter = false;
                     }
                     if (filter.getIn() != null && filter.getIn().size() > 0) {
                         if (useOr) {
@@ -211,6 +208,7 @@ public interface QueryService<ENTITY> {
                         } else {
                             queryWrapper.in(field, filter.getIn());
                         }
+                        noFilter = false;
                     }
                     if (filter.getNotIn() != null && filter.getNotIn().size() > 0) {
                         if (useOr) {
@@ -218,6 +216,7 @@ public interface QueryService<ENTITY> {
                         } else {
                             queryWrapper.notIn(field, filter.getNotIn());
                         }
+                        noFilter = false;
                     }
                     if (filter.getSpecified() != null) {
                         if (filter.getSpecified()) {
@@ -233,6 +232,7 @@ public interface QueryService<ENTITY> {
                                 queryWrapper.isNull(field);
                             }
                         }
+                        noFilter = false;
                     }
                     if (filter.getNotEquals() != null) {
                         if (useOr) {
@@ -240,6 +240,7 @@ public interface QueryService<ENTITY> {
                         } else {
                             queryWrapper.ne(field, filter.getNotEquals());
                         }
+                        noFilter = false;
                     }
                     if (filter.getGreaterThan() != null) {
                         if (useOr) {
@@ -247,6 +248,7 @@ public interface QueryService<ENTITY> {
                         } else {
                             queryWrapper.gt(field, filter.getGreaterThan());
                         }
+                        noFilter = false;
                     }
                     if (filter.getGreaterThanOrEqual() != null) {
                         if (useOr) {
@@ -254,6 +256,7 @@ public interface QueryService<ENTITY> {
                         } else {
                             queryWrapper.ge(field, filter.getGreaterThanOrEqual());
                         }
+                        noFilter = false;
                     }
                     if (filter.getLessThan() != null) {
                         if (useOr) {
@@ -261,6 +264,7 @@ public interface QueryService<ENTITY> {
                         } else {
                             queryWrapper.lt(field, filter.getLessThan());
                         }
+                        noFilter = false;
                     }
                     if (filter.getLessThanOrEqual() != null) {
                         if (useOr) {
@@ -268,6 +272,7 @@ public interface QueryService<ENTITY> {
                         } else {
                             queryWrapper.le(field, filter.getLessThanOrEqual());
                         }
+                        noFilter = false;
                     }
                     if (filter.getBetween() != null) {
                         if (useOr) {
@@ -294,6 +299,14 @@ public interface QueryService<ENTITY> {
                             } else if (filter.getBetween().length == 1) {
                                 queryWrapper.ge(field, filter.getBetween()[0]);
                             }
+                        }
+                        noFilter = false;
+                    }
+                    if (noFilter) {
+                        if (useOr) {
+                            queryWrapper.or(q -> q.eq("1", 1));
+                        } else {
+                            queryWrapper.eq("1", 1);
                         }
                     }
                 }
