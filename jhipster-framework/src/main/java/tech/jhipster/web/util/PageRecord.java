@@ -10,6 +10,8 @@ public class PageRecord<T> {
 
     private long size = 15;
 
+    private long pages = 0;
+
     private List<T> records = new ArrayList<>();
 
     public PageRecord() {
@@ -52,6 +54,17 @@ public class PageRecord<T> {
 
     public void setPage(long page) {
         this.page = page;
+    }
+
+    public long getPages() {
+        if (this.size == 0 || this.total == 0) {
+            return 0;
+        }
+        if (this.total % this.size == 0) {
+            return this.total / this.size;
+        } else {
+            return this.total / this.size + 1;
+        }
     }
 
     public PageRecord<T> records(List<T> records) {
