@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>3.1.5</version>
+        <version>3.2.0</version>
         <relativePath />
     </parent>
 
     <groupId>com.begcode</groupId>
     <artifactId>jhipster-parent</artifactId>
-    <version>8.0.0-rc.3</version>
+    <version>8.1.0-beta.0</version>
     <packaging>pom</packaging>
     <name>BegCode server-side parent POM</name>
     <url>https://github.com/begcode/begcode-bom/</url>
@@ -40,9 +40,9 @@
 
     <properties>
         <!-- The jhipster-framework version should be the same as the artifact version above -->
-        <jhipster-framework.version>8.0.0-rc.3</jhipster-framework.version>
+        <jhipster-framework.version>8.1.0-beta.0</jhipster-framework.version>
         <!-- The spring-boot version should be the same as the parent version above -->
-        <spring-boot.version>3.1.5</spring-boot.version>
+        <spring-boot.version>3.2.0</spring-boot.version>
 
         <!-- Build properties -->
         <java.version>17</java.version>
@@ -60,15 +60,15 @@
         <maven-deploy-plugin.version>3.1.1</maven-deploy-plugin.version>
         <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
         <maven-enforcer-plugin.version>3.4.1</maven-enforcer-plugin.version>
-        <maven-failsafe-plugin.version>3.2.1</maven-failsafe-plugin.version>
+        <maven-failsafe-plugin.version>3.2.2</maven-failsafe-plugin.version>
         <maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version>
-        <maven-javadoc-plugin.version>3.6.0</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
         <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
-        <maven-surefire-plugin.version>3.2.1</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.2.2</maven-surefire-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
         <properties-maven-plugin.version>1.2.1</properties-maven-plugin.version>
         <sonar-maven-plugin.version>3.10.0.2594</sonar-maven-plugin.version>
-        <versions-maven-plugin.version>2.16.1</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.16.2</versions-maven-plugin.version>
     </properties>
 
     <scm>
@@ -448,5 +448,4 @@
             </plugins>
         </pluginManagement>
     </build>
-
 </project>
