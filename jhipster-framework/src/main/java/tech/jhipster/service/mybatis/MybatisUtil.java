@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.Objects;
 
-import static com.diboot.core.util.ContextHelper.getBean;
+import static com.diboot.core.util.ContextHolder.getBean;
 
 public class MybatisUtil {
     private static DbType dbType;
