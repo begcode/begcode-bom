@@ -79,6 +79,7 @@
     <modules>
         <module>jhipster-dependencies</module>
         <module>jhipster-framework</module>
+        <module>ureport</module>
     </modules>
 
     <profiles>
