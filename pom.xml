@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>3.2.2</version>
+        <version>3.2.3</version>
         <relativePath />
     </parent>
 
@@ -42,7 +42,7 @@
         <!-- The jhipster-framework version should be the same as the artifact version above -->
         <jhipster-framework.version>8.2.0-SNAPSHOT</jhipster-framework.version>
         <!-- The spring-boot version should be the same as the parent version above -->
-        <spring-boot.version>3.2.2</spring-boot.version>
+        <spring-boot.version>3.2.3</spring-boot.version>
 
         <!-- Build properties -->
         <java.version>17</java.version>
@@ -54,20 +54,19 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <!-- Plugin versions -->
-        <git-commit-id-maven-plugin.version>7.0.0</git-commit-id-maven-plugin.version>
+        <git-commit-id-maven-plugin.version>8.0.1</git-commit-id-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
         <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
         <maven-deploy-plugin.version>3.1.1</maven-deploy-plugin.version>
-        <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
         <maven-enforcer-plugin.version>3.4.1</maven-enforcer-plugin.version>
         <maven-failsafe-plugin.version>3.2.5</maven-failsafe-plugin.version>
-        <maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version>
+        <maven-gpg-plugin.version>3.2.0</maven-gpg-plugin.version>
         <maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
         <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
         <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
         <properties-maven-plugin.version>1.2.1</properties-maven-plugin.version>
-        <sonar-maven-plugin.version>3.10.0.2594</sonar-maven-plugin.version>
+        <sonar-maven-plugin.version>3.11.0.3922</sonar-maven-plugin.version>
         <versions-maven-plugin.version>2.16.2</versions-maven-plugin.version>
     </properties>
 
@@ -273,15 +272,6 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-eclipse-plugin</artifactId>
-                    <version>${maven-eclipse-plugin.version}</version>
-                    <configuration>
-                        <downloadSources>true</downloadSources>
-                        <downloadJavadocs>true</downloadJavadocs>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
                     <version>${maven-enforcer-plugin.version}</version>
                     <executions>
@@ -445,7 +435,166 @@
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>3.2.0</version>
                 </plugin>
-            </plugins>
+                <plugin>
+                    <groupId>com.gradle</groupId>
+                    <artifactId>gradle-enterprise-maven-extension</artifactId>
+                    <configuration>
+                        <gradleEnterprise>
+                            <normalization>
+                                <runtimeClassPath>
+                                <propertiesNormalizations>
+                                    <propertiesNormalization>
+                                    <path>**/git.properties</path>
+                                    <ignoredProperties>
+                                        <ignore>jhipster-lib.git.build.time</ignore>
+                                    </ignoredProperties>
+                                    </propertiesNormalization>
+                                </propertiesNormalizations>
+                                </runtimeClassPath>
+                            </normalization>
+                            <plugins>
+                            <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-enforcer-plugin</artifactId>
+                                <executions>
+                                    <execution>
+                                        <id>enforce-versions</id>
+                                        <outputs>
+                                            <cacheableBecause>version check should be cached</cacheableBecause>
+                                        </outputs>
+                                        <inputs>
+                                            <properties>
+                                                <property>
+                                                    <name>fail</name>
+                                                </property>
+                                                <property>
+                                                    <name>failFast</name>
+                                                </property>
+                                                <property>
+                                                    <name>failIfNoRules</name>
+                                                </property>
+                                                <property>
+                                                    <name>rulesToSkip</name>
+                                                </property>
+                                                <property>
+                                                    <name>rulesToExecute</name>
+                                                </property>
+                                                <property>
+                                                    <name>rules</name>
+                                                </property>
+                                                <property>
+                                                    <name>skip</name>
+                                                </property>
+                                            </properties>
+                                                <ignoredProperties>
+                                                <ignore>ignoreCache</ignore>
+                                                <ignore>mojoExecution</ignore>
+                                                <ignore>session</ignore>
+                                            </ignoredProperties>
+                                        </inputs>
+                                         <nestedProperties>
+                                            <property>
+                                            <name>project</name>
+                                            <iteratedProperties>
+                                                <property>
+                                                <name>dependencies</name>
+                                                <inputs>
+                                                    <properties>
+                                                    <property>
+                                                        <name>groupId</name>
+                                                    </property>
+                                                    <property>
+                                                        <name>artifactId</name>
+                                                    </property>
+                                                    <property>
+                                                        <name>version</name>
+                                                    </property>
+                                                    <property>
+                                                        <name>type</name>
+                                                    </property>
+                                                    <property>
+                                                        <name>scope</name>
+                                                    </property>
+                                                    </properties>
+                                                </inputs>
+                                                </property>
+                                            </iteratedProperties>
+                                            </property>
+                                        </nestedProperties>
+                                    </execution>
+                                    <execution>
+                                        <id>enforce-dependencyConvergence</id>
+                                         <outputs>
+                                            <cacheableBecause>depencency convergenve should be cached</cacheableBecause>
+                                        </outputs>
+                                         <inputs>
+                                            <properties>
+                                                <property>
+                                                    <name>fail</name>
+                                                </property>
+                                                <property>
+                                                    <name>failFast</name>
+                                                </property>
+                                                <property>
+                                                    <name>failIfNoRules</name>
+                                                </property>
+                                                <property>
+                                                    <name>rulesToSkip</name>
+                                                </property>
+                                                <property>
+                                                    <name>rulesToExecute</name>
+                                                </property>
+                                                <property>
+                                                    <name>rules</name>
+                                                </property>
+                                                <property>
+                                                    <name>skip</name>
+                                                </property>
+                                            </properties>
+                                                <ignoredProperties>
+                                                <ignore>ignoreCache</ignore>
+                                                <ignore>mojoExecution</ignore>
+                                                <ignore>session</ignore>
+                                            </ignoredProperties>
+                                        </inputs>
+                                         <nestedProperties>
+                                            <property>
+                                            <name>project</name>
+                                            <iteratedProperties>
+                                                <property>
+                                                <name>dependencies</name>
+                                                <inputs>
+                                                    <properties>
+                                                    <property>
+                                                        <name>groupId</name>
+                                                    </property>
+                                                    <property>
+                                                        <name>artifactId</name>
+                                                    </property>
+                                                    <property>
+                                                        <name>version</name>
+                                                    </property>
+                                                    <property>
+                                                        <name>type</name>
+                                                    </property>
+                                                    <property>
+                                                        <name>scope</name>
+                                                    </property>
+                                                    </properties>
+                                                </inputs>
+                                                </property>
+                                            </iteratedProperties>
+                                            </property>
+                                        </nestedProperties>
+                                    </execution>
+                                </executions>
+                            </plugin>
+                        </plugins>
+                        </gradleEnterprise>
+
+                    </configuration>
+                </plugin>
+        </plugins>
         </pluginManagement>
     </build>
 </project>
