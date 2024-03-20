@@ -61,7 +61,7 @@
         <testng.version>7.9.0</testng.version>
         <xmemcached.version>2.4.8</xmemcached.version>
         <xmemcached-provider.version>4.1.3</xmemcached-provider.version>
-        <begcode-diboot-core.version>3.1.2.5</begcode-diboot-core.version>
+        <begcode-diboot-core.version>3.1.2.7</begcode-diboot-core.version>
     </properties>
 
     <dependencyManagement>
