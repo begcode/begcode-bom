@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>3.2.3</version>
+        <version>3.2.4</version>
         <relativePath />
     </parent>
 
     <groupId>com.begcode</groupId>
     <artifactId>jhipster-parent</artifactId>
-    <version>8.2.0</version>
+    <version>8.3.0</version>
     <packaging>pom</packaging>
     <name>BegCode server-side parent POM</name>
     <url>https://github.com/begcode/begcode-bom/</url>
@@ -40,9 +40,9 @@
 
     <properties>
         <!-- The jhipster-framework version should be the same as the artifact version above -->
-        <jhipster-framework.version>8.2.0</jhipster-framework.version>
+        <jhipster-framework.version>8.3.0</jhipster-framework.version>
         <!-- The spring-boot version should be the same as the parent version above -->
-        <spring-boot.version>3.2.3</spring-boot.version>
+        <spring-boot.version>3.2.4</spring-boot.version>
 
         <!-- Build properties -->
         <java.version>17</java.version>
@@ -55,14 +55,14 @@
 
         <!-- Plugin versions -->
         <git-commit-id-maven-plugin.version>8.0.2</git-commit-id-maven-plugin.version>
-        <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <maven-deploy-plugin.version>3.1.1</maven-deploy-plugin.version>
         <maven-enforcer-plugin.version>3.4.1</maven-enforcer-plugin.version>
         <maven-failsafe-plugin.version>3.2.5</maven-failsafe-plugin.version>
-        <maven-gpg-plugin.version>3.2.1</maven-gpg-plugin.version>
+        <maven-gpg-plugin.version>3.2.2</maven-gpg-plugin.version>
         <maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
-        <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
+        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
         <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
         <properties-maven-plugin.version>1.2.1</properties-maven-plugin.version>
