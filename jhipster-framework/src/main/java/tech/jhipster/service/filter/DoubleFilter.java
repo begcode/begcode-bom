@@ -34,8 +34,7 @@ public class DoubleFilter extends RangeFilter<Double> {
     /**
      * <p>Constructor for DoubleFilter.</p>
      */
-    public DoubleFilter() {
-    }
+    public DoubleFilter() {}
 
     public DoubleFilter(String value) {
         if (StringUtils.isNotBlank(value)) {
@@ -63,5 +62,4 @@ public class DoubleFilter extends RangeFilter<Double> {
     public DoubleFilter copy() {
         return new DoubleFilter(this);
     }
-
 }

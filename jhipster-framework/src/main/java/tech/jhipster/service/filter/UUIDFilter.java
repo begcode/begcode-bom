@@ -34,8 +34,7 @@ public class UUIDFilter extends Filter<UUID> {
     /**
      * <p>Constructor for UUIDFilter.</p>
      */
-    public UUIDFilter() {
-    }
+    public UUIDFilter() {}
 
     public UUIDFilter(String value) {
         if (StringUtils.isNotBlank(value)) {
@@ -60,5 +59,4 @@ public class UUIDFilter extends Filter<UUID> {
     public UUIDFilter copy() {
         return new UUIDFilter(this);
     }
-
 }

@@ -33,8 +33,7 @@ public class ShortFilter extends RangeFilter<Short> {
     /**
      * <p>Constructor for ShortFilter.</p>
      */
-    public ShortFilter() {
-    }
+    public ShortFilter() {}
 
     public ShortFilter(String value) {
         if (StringUtils.isNotBlank(value)) {
@@ -61,5 +60,4 @@ public class ShortFilter extends RangeFilter<Short> {
     public ShortFilter copy() {
         return new ShortFilter(this);
     }
-
 }

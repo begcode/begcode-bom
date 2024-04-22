@@ -31,6 +31,5 @@ mvn clean deploy -P deploy-central Darguments="gpg.passphrase=你的密码"
 [sonar-coverage]: https://sonarcloud.io/api/project_badges/measure?project=jhipster-framework&metric=coverage
 [sonar-bugs]: https://sonarcloud.io/api/project_badges/measure?project=jhipster-framework&metric=bugs
 [sonar-vulnerabilities]: https://sonarcloud.io/api/project_badges/measure?project=jhipster-framework&metric=vulnerabilities
-
 [develocity-badge]: https://img.shields.io/badge/Revved%20up%20by-Develocity-06A0CE?logo=Gradle&labelColor=02303A
 [develocity-url]: https://ge.jhipster.tech/scans

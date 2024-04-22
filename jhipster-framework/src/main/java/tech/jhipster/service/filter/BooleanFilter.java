@@ -39,8 +39,7 @@ public class BooleanFilter extends Filter<Boolean> {
     /**
      * <p>Constructor for BooleanFilter.</p>
      */
-    public BooleanFilter() {
-    }
+    public BooleanFilter() {}
 
     public BooleanFilter(String value) {
         if (StringUtils.isNotBlank(value)) {
@@ -62,5 +61,4 @@ public class BooleanFilter extends Filter<Boolean> {
     public BooleanFilter copy() {
         return new BooleanFilter(this);
     }
-
 }

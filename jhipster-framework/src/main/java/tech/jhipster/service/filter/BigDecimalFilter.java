@@ -34,8 +34,7 @@ public class BigDecimalFilter extends RangeFilter<BigDecimal> {
     /**
      * <p>Constructor for BigDecimalFilter.</p>
      */
-    public BigDecimalFilter() {
-    }
+    public BigDecimalFilter() {}
 
     public BigDecimalFilter(String value) {
         if (StringUtils.isNotBlank(value)) {
@@ -63,5 +62,4 @@ public class BigDecimalFilter extends RangeFilter<BigDecimal> {
     public BigDecimalFilter copy() {
         return new BigDecimalFilter(this);
     }
-
 }

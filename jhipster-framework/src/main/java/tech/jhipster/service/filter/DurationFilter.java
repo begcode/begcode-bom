@@ -34,8 +34,7 @@ public class DurationFilter extends RangeFilter<Duration> {
     /**
      * <p>Constructor for DurationFilter.</p>
      */
-    public DurationFilter() {
-    }
+    public DurationFilter() {}
 
     public DurationFilter(String value) {
         if (StringUtils.isNotBlank(value)) {
@@ -61,5 +60,4 @@ public class DurationFilter extends RangeFilter<Duration> {
     public DurationFilter copy() {
         return new DurationFilter(this);
     }
-
 }

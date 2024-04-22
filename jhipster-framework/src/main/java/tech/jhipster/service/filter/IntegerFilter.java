@@ -33,8 +33,7 @@ public class IntegerFilter extends RangeFilter<Integer> {
     /**
      * <p>Constructor for IntegerFilter.</p>
      */
-    public IntegerFilter() {
-    }
+    public IntegerFilter() {}
 
     public IntegerFilter(String value) {
         if (StringUtils.isNotBlank(value)) {
@@ -61,5 +60,4 @@ public class IntegerFilter extends RangeFilter<Integer> {
     public IntegerFilter copy() {
         return new IntegerFilter(this);
     }
-
 }

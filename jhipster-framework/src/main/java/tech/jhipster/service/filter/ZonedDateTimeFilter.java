@@ -46,8 +46,7 @@ public class ZonedDateTimeFilter extends RangeFilter<ZonedDateTime> {
     /**
      * <p>Constructor for ZonedDateTimeFilter.</p>
      */
-    public ZonedDateTimeFilter() {
-    }
+    public ZonedDateTimeFilter() {}
 
     public ZonedDateTimeFilter(String[] values) {
         if (values != null && values.length > 0) {
@@ -139,5 +138,4 @@ public class ZonedDateTimeFilter extends RangeFilter<ZonedDateTime> {
         super.setLessThanOrEqual(equals);
         return this;
     }
-
 }

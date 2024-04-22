@@ -33,8 +33,7 @@ public class LongFilter extends RangeFilter<Long> {
     /**
      * <p>Constructor for LongFilter.</p>
      */
-    public LongFilter() {
-    }
+    public LongFilter() {}
 
     public LongFilter(String value) {
         if (StringUtils.isNotBlank(value)) {
@@ -61,5 +60,4 @@ public class LongFilter extends RangeFilter<Long> {
     public LongFilter copy() {
         return new LongFilter(this);
     }
-
 }

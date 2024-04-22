@@ -32,8 +32,7 @@ public class FloatFilter extends RangeFilter<Float> {
     /**
      * <p>Constructor for FloatFilter.</p>
      */
-    public FloatFilter() {
-    }
+    public FloatFilter() {}
 
     public FloatFilter(String value) {
         if (StringUtils.isNotBlank(value)) {
@@ -61,5 +60,4 @@ public class FloatFilter extends RangeFilter<Float> {
     public FloatFilter copy() {
         return new FloatFilter(this);
     }
-
 }
