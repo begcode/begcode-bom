@@ -22,6 +22,7 @@ package tech.jhipster.service.filter;
 import tech.jhipster.service.aggregate.Aggregate;
 import tech.jhipster.service.aggregate.GroupByExpress;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ import java.util.Objects;
  */
 public class Filter<FIELD_TYPE> implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     private FIELD_TYPE equals;
     private FIELD_TYPE notEquals;
@@ -243,6 +245,14 @@ public class Filter<FIELD_TYPE> implements Serializable {
             (getGroupBy() != null ? "groupBy=" + getGroupBy() + ", " : "") +
             "]"
         );
+    }
+
+    public boolean hasDefinedFilter() {
+        return equals != null || notEquals != null || specified != null || in != null && !in.isEmpty() || notIn != null && !notIn.isEmpty();
+    }
+
+    public boolean hasAggregate() {
+        return aggregate != null || groupBy != null;
     }
 
     /**

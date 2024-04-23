@@ -1,6 +1,7 @@
 package tech.jhipster.service.mybatis;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.apache.commons.lang3.StringUtils;
 import tech.jhipster.service.filter.Filter;
 import tech.jhipster.service.filter.RangeFilter;
 import tech.jhipster.service.filter.StringFilter;
@@ -25,7 +26,7 @@ public interface QueryService<ENTITY> {
                         }
                         noFilter = false;
                     }
-                    if (filter.getIn() != null && filter.getIn().size() > 0) {
+                    if (filter.getIn() != null && !filter.getIn().isEmpty()) {
                         if (useOr) {
                             queryWrapper.or(q -> q.in(field, filter.getIn()));
                         } else {
@@ -33,7 +34,7 @@ public interface QueryService<ENTITY> {
                         }
                         noFilter = false;
                     }
-                    if (filter.getNotIn() != null && filter.getNotIn().size() > 0) {
+                    if (filter.getNotIn() != null && !filter.getNotIn().isEmpty()) {
                         if (useOr) {
                             queryWrapper.or(q -> q.notIn(field, filter.getNotIn()));
                         } else {
@@ -89,7 +90,7 @@ public interface QueryService<ENTITY> {
         return (
                 queryWrapper -> {
                     boolean noFilter = true;
-                    if (filter.getEquals() != null) {
+                    if (StringUtils.isNotBlank(filter.getEquals())) {
                         if (useOr) {
                             queryWrapper.or(q -> q.eq(field, filter.getEquals()));
                         } else {
@@ -97,7 +98,7 @@ public interface QueryService<ENTITY> {
                         }
                         noFilter = false;
                     }
-                    if (filter.getIn() != null && filter.getIn().size() > 0) {
+                    if (filter.getIn() != null && !filter.getIn().isEmpty()) {
                         if (useOr) {
                             queryWrapper.or(q -> q.in(field, filter.getIn()));
                         } else {
@@ -105,7 +106,7 @@ public interface QueryService<ENTITY> {
                         }
                         noFilter = false;
                     }
-                    if (filter.getNotIn() != null && filter.getNotIn().size() > 0) {
+                    if (filter.getNotIn() != null && !filter.getNotIn().isEmpty()) {
                         if (useOr) {
                             queryWrapper.or(q -> q.notIn(field, filter.getNotIn()));
                         } else {
@@ -113,7 +114,7 @@ public interface QueryService<ENTITY> {
                         }
                         noFilter = false;
                     }
-                    if (filter.getContains() != null) {
+                    if (StringUtils.isNotBlank(filter.getContains())) {
                         if (useOr) {
                             queryWrapper.or(q -> q.like(field, filter.getContains()));
                         } else {
@@ -121,7 +122,7 @@ public interface QueryService<ENTITY> {
                         }
                         noFilter = false;
                     }
-                    if (filter.getContainsLeft() != null) {
+                    if (StringUtils.isNotBlank(filter.getContainsLeft())) {
                         if (useOr) {
                             queryWrapper.or(q -> q.likeLeft(field, filter.getContainsLeft()));
                         } else {
@@ -129,7 +130,7 @@ public interface QueryService<ENTITY> {
                         }
                         noFilter = false;
                     }
-                    if (filter.getContainsRight() != null) {
+                    if (StringUtils.isNotBlank(filter.getContainsRight())) {
                         if (useOr) {
                             queryWrapper.or(q -> q.likeRight(field, filter.getContainsRight()));
                         } else {
@@ -137,7 +138,7 @@ public interface QueryService<ENTITY> {
                         }
                         noFilter = false;
                     }
-                    if (filter.getDoesNotContain() != null) {
+                    if (StringUtils.isNotBlank(filter.getDoesNotContain())) {
                         if (useOr) {
                             queryWrapper.or(q -> q.notLike(field, filter.getDoesNotContain()));
                         } else {
@@ -145,7 +146,7 @@ public interface QueryService<ENTITY> {
                         }
                         noFilter = false;
                     }
-                    if (filter.getNotEquals() != null) {
+                    if (StringUtils.isNotBlank(filter.getNotEquals())) {
                         if (useOr) {
                             queryWrapper.or(q -> q.ne(field, filter.getNotEquals()));
                         } else {
@@ -196,7 +197,7 @@ public interface QueryService<ENTITY> {
                         }
                         noFilter = false;
                     }
-                    if (filter.getIn() != null && filter.getIn().size() > 0) {
+                    if (filter.getIn() != null && !filter.getIn().isEmpty()) {
                         if (useOr) {
                             queryWrapper.or(q -> q.in(field, filter.getIn()));
                         } else {
@@ -204,7 +205,7 @@ public interface QueryService<ENTITY> {
                         }
                         noFilter = false;
                     }
-                    if (filter.getNotIn() != null && filter.getNotIn().size() > 0) {
+                    if (filter.getNotIn() != null && !filter.getNotIn().isEmpty()) {
                         if (useOr) {
                             queryWrapper.or(q -> q.notIn(field, filter.getNotIn()));
                         } else {

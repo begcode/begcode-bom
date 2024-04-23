@@ -151,6 +151,10 @@ public class StringFilter extends Filter<String> {
             Objects.equals(doesNotContain, that.doesNotContain);
     }
 
+    public boolean hasDefinedFilter() {
+        return super.hasDefinedFilter() && (StringUtils.isNotBlank(contains) || StringUtils.isNotBlank(doesNotContain) || StringUtils.isNotBlank(containsLeft) || StringUtils.isNotBlank(containsRight))
+    }
+
     /** {@inheritDoc} */
     @Override
     public int hashCode() {

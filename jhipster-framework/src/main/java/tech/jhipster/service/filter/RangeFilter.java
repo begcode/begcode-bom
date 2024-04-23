@@ -19,9 +19,7 @@
 
 package tech.jhipster.service.filter;
 
-import tech.jhipster.service.aggregate.DateTimeGroupBy;
-import tech.jhipster.service.aggregate.NumberAggregate;
-
+import java.io.Serial;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -55,6 +53,7 @@ import java.util.Objects;
  */
 public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> extends Filter<FIELD_TYPE> {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private FIELD_TYPE greaterThan;
@@ -62,10 +61,6 @@ public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> exte
     private FIELD_TYPE greaterThanOrEqual;
     private FIELD_TYPE lessThanOrEqual;
     private FIELD_TYPE[] between;
-
-    private NumberAggregate aggregate;
-
-    private DateTimeGroupBy groupBy;
 
     /**
      * <p>Constructor for RangeFilter.</p>
@@ -84,8 +79,6 @@ public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> exte
         greaterThanOrEqual = filter.greaterThanOrEqual;
         lessThanOrEqual = filter.lessThanOrEqual;
         between = filter.between;
-        aggregate = filter.aggregate;
-        groupBy = filter.groupBy;
     }
 
     /** {@inheritDoc} */
@@ -182,21 +175,8 @@ public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> exte
         this.between = between;
     }
 
-    public NumberAggregate getAggregate() {
-        return aggregate;
-    }
-
-    public void setAggregate(NumberAggregate aggregate) {
-        this.aggregate = aggregate;
-    }
-
-    @Override
-    public DateTimeGroupBy getGroupBy() {
-        return groupBy;
-    }
-
-    public void setGroupBy(DateTimeGroupBy groupBy) {
-        this.groupBy = groupBy;
+    public boolean hasDefinedFilter() {
+        return super.hasDefinedFilter() && (greaterThan != null || lessThan != null || greaterThanOrEqual != null || lessThanOrEqual != null || between != null && between.length > 0);
     }
 
     /** {@inheritDoc} */
@@ -217,16 +197,14 @@ public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> exte
             Objects.equals(lessThan, that.lessThan) &&
             Objects.equals(greaterThanOrEqual, that.greaterThanOrEqual) &&
             Objects.equals(lessThanOrEqual, that.lessThanOrEqual) &&
-            Objects.equals(aggregate, that.aggregate) &&
-            Objects.equals(groupBy, that.groupBy) &&
-            Arrays.equals(between, that.between);
+            Arrays.equals(between, that.between)
         );
     }
 
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), greaterThan, lessThan, greaterThanOrEqual, lessThanOrEqual, aggregate, groupBy, Arrays.hashCode(between));
+        return Objects.hash(super.hashCode(), greaterThan, lessThan, greaterThanOrEqual, lessThanOrEqual, Arrays.hashCode(between));
     }
 
     /** {@inheritDoc} */
