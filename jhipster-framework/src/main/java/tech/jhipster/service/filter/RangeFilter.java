@@ -19,6 +19,8 @@
 
 package tech.jhipster.service.filter;
 
+import dev.langchain4j.model.output.structured.Description;
+
 import java.io.Serial;
 import java.util.Arrays;
 import java.util.Objects;
@@ -56,10 +58,15 @@ public class RangeFilter<FIELD_TYPE extends Comparable<? super FIELD_TYPE>> exte
     @Serial
     private static final long serialVersionUID = 1L;
 
+    @Description("大于条件值。示例：{id:{greaterThan:1}}，表示id大于1")
     private FIELD_TYPE greaterThan;
+    @Description("小于条件值。示例：{id:{lessThan:1}}，表示id小于1")
     private FIELD_TYPE lessThan;
+    @Description("大于等于条件值。示例：{id:{greaterThanOrEqual:1}}，表示id大于等于1")
     private FIELD_TYPE greaterThanOrEqual;
+    @Description("小于等于条件值。示例：{id:{lessThanOrEqual:1}}，表示id小于等于1")
     private FIELD_TYPE lessThanOrEqual;
+    @Description("在两个值之间。示例：{id:{between: [1,3]}}表示id在1和3之间")
     private FIELD_TYPE[] between;
 
     /**

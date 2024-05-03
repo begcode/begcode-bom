@@ -19,8 +19,10 @@
 
 package tech.jhipster.service.filter;
 
+import dev.langchain4j.model.output.structured.Description;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serial;
 import java.util.Objects;
 
 /**
@@ -39,11 +41,16 @@ import java.util.Objects;
  */
 public class StringFilter extends Filter<String> {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
+    @Description("字符串中包含的值。示例：contains=abc，表示查找包含abc的字符串")
     private String contains;
+    @Description("字符串中不包含的值。示例：doesNotContain=abc，表示查找不包含abc的字符串")
     private String doesNotContain;
+    @Description("字符串左侧包含的值。示例：containsLeft=abc，表示查找以abc开头的字符串")
     private String containsLeft;
+    @Description("字符串右侧包含的值。示例：containsRight=abc，表示查找以abc结尾的字符串")
     private String containsRight;
 
     /**
@@ -152,7 +159,7 @@ public class StringFilter extends Filter<String> {
     }
 
     public boolean hasDefinedFilter() {
-        return super.hasDefinedFilter() && (StringUtils.isNotBlank(contains) || StringUtils.isNotBlank(doesNotContain) || StringUtils.isNotBlank(containsLeft) || StringUtils.isNotBlank(containsRight))
+        return super.hasDefinedFilter() && (StringUtils.isNotBlank(contains) || StringUtils.isNotBlank(doesNotContain) || StringUtils.isNotBlank(containsLeft) || StringUtils.isNotBlank(containsRight));
     }
 
     /** {@inheritDoc} */

@@ -19,6 +19,7 @@
 
 package tech.jhipster.service.filter;
 
+import dev.langchain4j.model.output.structured.Description;
 import tech.jhipster.service.aggregate.Aggregate;
 import tech.jhipster.service.aggregate.GroupByExpress;
 
@@ -44,10 +45,15 @@ public class Filter<FIELD_TYPE> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
+    @Description("等于条件值。示例：{id: {equals:1}}，表示id等于1")
     private FIELD_TYPE equals;
+    @Description("不等于条件值。示例：{id:{notEquals:1}}，表示id不等于1")
     private FIELD_TYPE notEquals;
+    @Description("设置IsNotNull值或IsNull条件，true表示IsNotNull，false表示IsNull, 示例：{id:{specified:true}}，表示id不为空; {id:{specified:false}}，表示id为空")
     private Boolean specified;
+    @Description("在集合中存在，示例：{id:{in:[1,2,3]}}，表示id等于[1,2,3]中任意一个值")
     private List<FIELD_TYPE> in;
+    @Description("不在集合中，示例：{id:{notIn:[1,2,3]}}，表示id不等于[1,2,3]中任意一个值")
     private List<FIELD_TYPE> notIn;
 
     private Aggregate aggregate;
