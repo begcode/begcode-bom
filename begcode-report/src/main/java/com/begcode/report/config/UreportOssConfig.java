@@ -1,5 +1,15 @@
 package com.begcode.report.config;
 
+import com.amazonaws.ClientConfiguration;
+import com.amazonaws.Protocol;
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.client.builder.AwsClientBuilder;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.begcode.report.core.utils.ReportProperties;
+import com.begcode.report.core.utils.oss.OssProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,11 +46,10 @@ public class UreportOssConfig {
             standard.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(oss.getEndpoint(), oss.getRegion()));
         }
 
-        AmazonS3 amazonS3 = standard
+        return standard
                 .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
                 .withClientConfiguration(baseOpts)
                 .build();
-        return amazonS3;
     }
 
 }

@@ -4,11 +4,11 @@ package com.begcode.report.console.cache;
 import com.begcode.report.console.RequestHolder;
 import com.begcode.report.core.exception.ReportException;
 import com.begcode.report.core.utils.SpringContextUtils;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -91,7 +91,7 @@ public class TempObjectCache {
     }
 
     private ObjectMap getReportMap(HttpServletRequest req) {
-        List<String> expiredList = new ArrayList<String>();
+        List<String> expiredList = new ArrayList<>();
         logger.info(sessionMap.keySet().toString());
         for (String key : sessionMap.keySet()) {
             ObjectMap reportObj = sessionMap.get(key);

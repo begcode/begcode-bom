@@ -1,18 +1,13 @@
 package com.begcode.report.console;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.servlet.http.HttpServletRequest;
 import java.net.URLDecoder;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author 夏天
- * @Date: 2022/1/14
- * Description:
- */
 public abstract class AbstractReportBasicController {
 
     public final String PREVIEW_KEY="p";
@@ -70,7 +65,7 @@ public abstract class AbstractReportBasicController {
     }
 
     protected Map<String, Object> buildParameters(HttpServletRequest req) {
-        Map<String,Object> parameters=new HashMap<String,Object>();
+        Map<String,Object> parameters= new HashMap<>();
         Enumeration<?> enumeration=req.getParameterNames();
         while(enumeration.hasMoreElements()){
             Object obj=enumeration.nextElement();

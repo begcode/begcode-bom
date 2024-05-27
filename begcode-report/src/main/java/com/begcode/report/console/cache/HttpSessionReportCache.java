@@ -1,6 +1,8 @@
 
 package com.begcode.report.console.cache;
 
+import com.begcode.report.console.RequestHolder;
+import com.begcode.report.core.cache.ReportCache;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 

@@ -19,16 +19,13 @@ import com.begcode.report.core.expression.model.data.ObjectListExpressionData;
 import com.begcode.report.core.model.Cell;
 import com.begcode.report.core.model.Image;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.springframework.util.Base64Utils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+import static org.apache.commons.io.IOUtils.closeQuietly;
 
 
 /**
@@ -122,8 +119,8 @@ public class ZxingValueCompute implements ValueCompute {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             ImageIO.write(image, "png", outputStream);
             byte[] bytes = outputStream.toByteArray();
-            String base64Data = Base64Utils.encodeToString(bytes);
-            IOUtils.closeQuietly(outputStream);
+            String base64Data = Base64.getEncoder().encodeToString(bytes);
+            closeQuietly(outputStream);
             return new Image(base64Data, w, h);
         } catch (Exception ex) {
             throw new ReportComputeException(ex);
