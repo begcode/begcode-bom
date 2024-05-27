@@ -78,6 +78,7 @@
     <modules>
         <module>jhipster-dependencies</module>
         <module>jhipster-framework</module>
+        <module>begcode-report</module>
     </modules>
 
     <profiles>
