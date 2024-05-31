@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.begcode</groupId>
         <artifactId>jhipster-parent</artifactId>
-        <version>8.4.0</version>
+        <version>8.5.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -40,7 +40,7 @@
     <properties>
         <!-- Dependency versions -->
         <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
-        <spring-cloud.version>2023.0.1</spring-cloud.version>
+        <spring-cloud.version>2023.0.2</spring-cloud.version>
         <springdocs.version>2.5.0</springdocs.version>
         <begcode-diboot-core.version>3.1.2.7</begcode-diboot-core.version>
     </properties>
