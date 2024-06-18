@@ -57,7 +57,7 @@
             <artifactId>gson</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.begcode</groupId>
+            <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-core</artifactId>
         </dependency>
         <dependency>

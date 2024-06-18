@@ -90,7 +90,7 @@
                 <version>2.10.1</version>
             </dependency>
             <dependency>
-                <groupId>com.begcode</groupId>
+                <groupId>dev.langchain4j</groupId>
                 <artifactId>langchain4j-core</artifactId>
                 <version>0.30.1</version>
             </dependency>
