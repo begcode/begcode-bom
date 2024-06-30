@@ -13,11 +13,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * @Author: summer
- * @Date: 2022/3/26 10:09
- * @Description:
- **/
 @Component
 public class ConcatFunction implements Function {
     @Override

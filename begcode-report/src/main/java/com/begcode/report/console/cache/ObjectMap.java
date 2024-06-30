@@ -6,10 +6,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-/**
- * @author Jacky.gao
- * @since 2017年9月6日
- */
 public class ObjectMap {
     private final int MAX_ITEM = 3;
     private static final int MILLISECOND = 300000;//default expired time is 5 minutes.

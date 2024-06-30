@@ -8,10 +8,10 @@
     </server>
     <buildScan>
         <capture>
-            <fileFingerprints>true</fileFingerprints>
+            <fileFingerprints>false</fileFingerprints>
         </capture>
         <publishing>
-            <onlyIf>true</onlyIf>
+            <onlyIf>false</onlyIf>
         </publishing>
         <backgroundBuildScanUpload>#{env['CI'] == null}</backgroundBuildScanUpload>
         <obfuscation>
@@ -20,10 +20,10 @@
     </buildScan>
     <buildCache>
         <local>
-            <enabled>true</enabled>
+            <enabled>false</enabled>
         </local>
         <remote>
-            <enabled>true</enabled>
+            <enabled>false</enabled>
             <storeEnabled>#{isTrue(env['GITHUB_ACTIONS']) and isTrue(env['GRADLE_ENTERPRISE_ACCESS_KEY'])}</storeEnabled>
         </remote>
     </buildCache>

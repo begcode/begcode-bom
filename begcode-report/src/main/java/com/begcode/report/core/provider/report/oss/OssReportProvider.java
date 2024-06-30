@@ -17,11 +17,6 @@ import org.springframework.stereotype.Component;
 import java.io.InputStream;
 import java.util.*;
 
-/**
- * @Author: summer
- * @Date: 2022/4/3 20:09
- * @Description:
- **/
 @Component
 public class OssReportProvider implements ReportProvider {
 

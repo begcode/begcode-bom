@@ -7,11 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
-/**
- * @Author: summer
- * @Date: 2022/3/5 18:42
- * @Description:
- **/
 @Component
 public class RedisReportCache implements ReportCache {
 

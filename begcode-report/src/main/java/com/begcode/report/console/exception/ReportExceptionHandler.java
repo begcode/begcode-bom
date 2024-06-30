@@ -7,12 +7,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-/**
- * @Author: summer
- * @Date: 2022/2/11 22:20
- * @Description:
- **/
 @ControllerAdvice
 public class ReportExceptionHandler {
 

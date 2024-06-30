@@ -12,10 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 
-/**
- * @author Jacky.gao
- * @since 2017年3月8日
- */
 @Component
 public class HttpSessionReportCache implements ReportCache {
     private Map<String, ObjectMap> sessionReportMap = new HashMap<String, ObjectMap>();

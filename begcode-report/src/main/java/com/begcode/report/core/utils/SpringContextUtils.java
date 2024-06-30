@@ -12,11 +12,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
-/**
- * @Author: summer
- * @Date: 2022/2/13 12:34
- * @Description:
- **/
 @Component
 public class SpringContextUtils implements ApplicationContextAware {
 

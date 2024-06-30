@@ -1,10 +1,5 @@
 package com.begcode.report.core.utils.oss;
 
-/**
- * @Author: summer
- * @Date: 2022/4/3 10:51
- * @Description: oss配置
- **/
 public class OssProperties {
 
     private String accessKey;

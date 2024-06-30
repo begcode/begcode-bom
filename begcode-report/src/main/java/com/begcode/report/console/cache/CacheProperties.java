@@ -5,12 +5,6 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
-/**
- * @Author: summer
- * @Date: 2022/2/13 12:16
- * @Description:
- **/
 @Component
 public class CacheProperties {
 

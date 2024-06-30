@@ -9,11 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * @Author: summer
- * @Date: 2022/10/23 10:48
- * @Description:
- **/
 @Component
 public class SplitFunction extends StringFunction{
     @Override

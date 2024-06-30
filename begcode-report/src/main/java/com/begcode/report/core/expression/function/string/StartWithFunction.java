@@ -9,11 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * @Author: summer
- * @Date: 2022/10/23 10:39
- * @Description: 检查字符串是否以指定的前缀开始函数
- **/
 @Component
 public class StartWithFunction extends StringFunction {
     @Override

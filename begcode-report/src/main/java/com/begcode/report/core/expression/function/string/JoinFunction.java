@@ -16,11 +16,6 @@ import org.thymeleaf.util.StringUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @Author: summer
- * @Date: 2022/3/26 10:24
- * @Description:
- **/
 @Component
 public class JoinFunction implements Function {
     @Override

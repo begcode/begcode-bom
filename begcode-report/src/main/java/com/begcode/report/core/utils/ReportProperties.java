@@ -4,11 +4,6 @@ import com.begcode.report.core.utils.oss.OssProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-/**
- * @Author: summer
- * @Date: 2022/2/13 12:02
- * @Description:
- **/
 @ConfigurationProperties(prefix = "ureport")
 @Component
 public class ReportProperties {

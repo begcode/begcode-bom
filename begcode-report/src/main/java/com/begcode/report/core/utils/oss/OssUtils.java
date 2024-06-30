@@ -12,11 +12,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * @Author: summer
- * @Date: 2022/4/3 20:13
- * @Description:
- **/
 @Component
 public class OssUtils {
 

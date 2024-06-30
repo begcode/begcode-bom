@@ -18,11 +18,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-/**
- * @Author: summer
- * @Date: 2022/1/12 21:20
- * @Description:
- **/
 @Controller
 @RequestMapping(value = ImageController.URL)
 public class ImageController extends AbstractReportBasicController {

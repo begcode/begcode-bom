@@ -34,11 +34,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * @Author: summer
- * @Date: 2022/1/12 21:20
- * @Description: 设计器控制器
- **/
 @Controller
 @RequestMapping(value = "/designer")
 public class DesignerController extends AbstractReportBasicController {

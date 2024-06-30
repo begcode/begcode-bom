@@ -6,10 +6,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * @author Jacky.gao
- * @since 2017年10月11日
- */
 public class MobileUtils {
 	private static final String phoneReg = "\\b(ip(hone|od)|android|opera m(ob|in)i"
             +"|windows (phone|ce)|blackberry"

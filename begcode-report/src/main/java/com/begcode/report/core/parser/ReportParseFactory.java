@@ -5,11 +5,6 @@ import org.thymeleaf.util.StringUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @Author: summer
- * @Date: 2022/8/9 21:23
- * @Description:
- **/
 public abstract class ReportParseFactory {
 
     private static Map<String, Parser> parseMap = new HashMap<>();
