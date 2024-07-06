@@ -28,4 +28,14 @@ public interface Criteria {
      * @return a new criteria with copied filters
      */
     Criteria copy();
+
+    Boolean getUseOr();
+
+    Boolean getDistinct();
+
+    String getJhiCommonSearchKeywords();
+
+    Criteria getAnd();
+
+    Criteria getOr();
 }

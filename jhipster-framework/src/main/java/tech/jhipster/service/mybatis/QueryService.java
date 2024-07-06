@@ -1,13 +1,26 @@
 package tech.jhipster.service.mybatis;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.apache.commons.collections4.MapUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import tech.jhipster.service.Criteria;
+import tech.jhipster.service.aggregate.DateTimeGroupBy;
+import tech.jhipster.service.aggregate.NumberAggregate;
 import tech.jhipster.service.filter.Filter;
 import tech.jhipster.service.filter.RangeFilter;
 import tech.jhipster.service.filter.StringFilter;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
+
+import static com.diboot.core.binding.QueryBuilder.criteriaToWrapper;
+import static com.diboot.core.binding.QueryBuilder.criteriaToWrapperNoJoin;
+import static tech.jhipster.service.mybatis.AggregateUtil.buildAggregate;
+import static tech.jhipster.service.mybatis.AggregateUtil.buildGroupBy;
 
 public interface QueryService<ENTITY> {
     default <X> Consumer<QueryWrapper<ENTITY>> buildSpecification(Filter<X> filter, String field) {
@@ -302,5 +315,156 @@ public interface QueryService<ENTITY> {
                     }
                 }
         );
+    }
+
+    default <C extends Criteria> QueryWrapper<ENTITY> createQueryWrapper(QueryWrapper<ENTITY> queryWrapper, Boolean useOr, C criteria, Class<ENTITY> entityClass) {
+        if (criteria != null) {
+            if (useOr == null) {
+                useOr = false;
+            }
+            Map<QueryWrapper<ENTITY>, Map<String, Object>> queryWrapperMapMap = criteriaToWrapper(criteria, entityClass);
+            Map.Entry<QueryWrapper<ENTITY>, Map<String, Object>> queryWrapperMapEntry = queryWrapperMapMap
+                .entrySet()
+                .stream()
+                .findFirst()
+                .orElseThrow();
+            Map<String, Object> fieldMap = queryWrapperMapEntry.getValue();
+            if (MapUtils.isNotEmpty(fieldMap)) {
+                if (queryWrapper == null) {
+                    queryWrapper = queryWrapperMapEntry.getKey();
+                }
+                QueryWrapper<ENTITY> finalQueryWrapper = queryWrapper;
+                Boolean finalUseOr = useOr;
+                fieldMap.forEach((fieldName, filter) -> {
+                    if (filter instanceof StringFilter) {
+                        CriteriaUtil.build(
+                            finalUseOr,
+                            finalQueryWrapper,
+                            buildStringSpecification((StringFilter) filter, fieldName, finalUseOr)
+                        );
+                    } else if (filter instanceof RangeFilter) {
+                        CriteriaUtil.build(
+                            finalUseOr,
+                            finalQueryWrapper,
+                            buildRangeSpecification((RangeFilter) filter, fieldName, finalUseOr)
+                        );
+                    } else if (filter instanceof Filter) {
+                        CriteriaUtil.build(finalUseOr, finalQueryWrapper, buildSpecification((Filter) filter, fieldName, finalUseOr));
+                    }
+                });
+            }
+            if (criteria.getAnd() != null) {
+                Map<String, Object> stringObjectMap = BeanUtil.beanToMap(criteria.getAnd(), false, true);
+                if (
+                    !((stringObjectMap.containsKey("useOr") && stringObjectMap.keySet().size() == 1) ||
+                        ObjectUtils.isEmpty(stringObjectMap))
+                ) {
+                    if (queryWrapper != null) {
+                        queryWrapper.and(q -> createQueryWrapper(q, criteria.getAnd().getUseOr(), criteria.getAnd(), entityClass));
+                    } else {
+                        queryWrapper = createQueryWrapper(null, criteria.getAnd().getUseOr(), criteria.getAnd(), entityClass);
+                    }
+                }
+            } else {
+                if (criteria.getOr() != null) {
+                    Map<String, Object> stringObjectMap = BeanUtil.beanToMap(criteria.getOr(), false, true);
+                    if (
+                        !((stringObjectMap.containsKey("useOr") && stringObjectMap.keySet().size() == 1) ||
+                            ObjectUtils.isEmpty(stringObjectMap))
+                    ) {
+                        if (queryWrapper != null) {
+                            queryWrapper.or(q -> createQueryWrapper(q, criteria.getOr().getUseOr(), criteria.getOr(), entityClass));
+                        } else {
+                            queryWrapper = createQueryWrapper(null, criteria.getOr().getUseOr(), criteria.getOr(), entityClass);
+                        }
+                    }
+                }
+            }
+        }
+        return queryWrapper;
+    }
+
+    default <C extends Criteria> QueryWrapper<ENTITY> createQueryWrapperNoJoin(QueryWrapper<ENTITY> queryWrapper, Boolean useOr, C criteria, Class<ENTITY> entityClass) {
+        if (criteria != null) {
+            if (useOr == null) {
+                useOr = false;
+            }
+            Map<QueryWrapper<ENTITY>, Map<String, Object>> queryWrapperMapMap = criteriaToWrapperNoJoin(criteria, entityClass);
+            Map.Entry<QueryWrapper<ENTITY>, Map<String, Object>> queryWrapperMapEntry = queryWrapperMapMap
+                .entrySet()
+                .stream()
+                .findFirst()
+                .orElseThrow();
+            Map<String, Object> fieldMap = queryWrapperMapEntry.getValue();
+            if (MapUtils.isNotEmpty(fieldMap)) {
+                if (queryWrapper == null) {
+                    queryWrapper = queryWrapperMapEntry.getKey();
+                }
+                QueryWrapper<ENTITY> finalQueryWrapper = queryWrapper;
+                Boolean finalUseOr = useOr;
+                fieldMap.forEach((fieldName, filter) -> {
+                    if (filter instanceof StringFilter) {
+                        CriteriaUtil.build(
+                            finalUseOr,
+                            finalQueryWrapper,
+                            buildStringSpecification((StringFilter) filter, fieldName, finalUseOr)
+                        );
+                    } else if (filter instanceof RangeFilter) {
+                        CriteriaUtil.build(
+                            finalUseOr,
+                            finalQueryWrapper,
+                            buildRangeSpecification((RangeFilter) filter, fieldName, finalUseOr)
+                        );
+                    } else if (filter instanceof Filter) {
+                        CriteriaUtil.build(finalUseOr, finalQueryWrapper, buildSpecification((Filter) filter, fieldName, finalUseOr));
+                    }
+                });
+            }
+            if (criteria.getAnd() != null) {
+                Map<String, Object> stringObjectMap = BeanUtil.beanToMap(criteria.getAnd(), false, true);
+                if (
+                    !((stringObjectMap.containsKey("useOr") && stringObjectMap.keySet().size() == 1) ||
+                        ObjectUtils.isEmpty(stringObjectMap))
+                ) {
+                    if (queryWrapper != null) {
+                        queryWrapper.and(q -> createQueryWrapperNoJoin(q, criteria.getAnd().getUseOr(), criteria.getAnd(), entityClass));
+                    } else {
+                        queryWrapper = createQueryWrapperNoJoin(null, criteria.getAnd().getUseOr(), criteria.getAnd(), entityClass);
+                    }
+                }
+            } else {
+                if (criteria.getOr() != null) {
+                    Map<String, Object> stringObjectMap = BeanUtil.beanToMap(criteria.getOr(), false, true);
+                    if (
+                        !((stringObjectMap.containsKey("useOr") && stringObjectMap.keySet().size() == 1) ||
+                            ObjectUtils.isEmpty(stringObjectMap))
+                    ) {
+                        if (queryWrapper != null) {
+                            queryWrapper.or(q -> createQueryWrapperNoJoin(q, criteria.getOr().getUseOr(), criteria.getOr(), entityClass));
+                        } else {
+                            queryWrapper = createQueryWrapperNoJoin(null, criteria.getOr().getUseOr(), criteria.getOr(), entityClass);
+                        }
+                    }
+                }
+            }
+        }
+        return queryWrapper;
+    }
+
+    default void getAggregateAndGroupBy(Filter<?> filter, String fieldName, List<String> selects, List<String> groupBys) {
+        if (filter.getAggregate() != null) {
+            if (filter.getAggregate() instanceof NumberAggregate) {
+                buildAggregate((NumberAggregate) filter.getAggregate(), fieldName, selects);
+            } else {
+                buildAggregate(filter.getAggregate(), fieldName, selects);
+            }
+        }
+        if (filter.getGroupBy() != null) {
+            if (filter.getGroupBy() instanceof DateTimeGroupBy) {
+                buildGroupBy((DateTimeGroupBy) filter.getGroupBy(), fieldName, groupBys, selects);
+            } else {
+                buildGroupBy(filter.getGroupBy(), fieldName, groupBys, selects);
+            }
+        }
     }
 }

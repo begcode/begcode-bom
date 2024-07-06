@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.begcode</groupId>
         <artifactId>jhipster-parent</artifactId>
-        <version>8.6.0</version>
+        <version>8.6.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -42,7 +42,8 @@
         <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
         <spring-cloud.version>2023.0.2</spring-cloud.version>
         <springdocs.version>2.5.0</springdocs.version>
-        <begcode-diboot-core.version>3.1.2.7</begcode-diboot-core.version>
+        <begcode-diboot-core.version>3.4.0</begcode-diboot-core.version>
+        <hutool-core.version>5.8.28</hutool-core.version>
     </properties>
 
     <dependencyManagement>
@@ -83,6 +84,11 @@
                 <groupId>com.begcode</groupId>
                 <artifactId>diboot-core</artifactId>
                 <version>${begcode-diboot-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-core</artifactId>
+                <version>${hutool-core.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.code.gson</groupId>
