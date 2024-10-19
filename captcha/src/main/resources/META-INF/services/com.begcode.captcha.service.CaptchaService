@@ -1,0 +1,4 @@
+com.begcode.captcha.service.impl.BlockPuzzleCaptchaServiceImpl
+com.begcode.captcha.service.impl.ClickWordCaptchaServiceImpl
+com.begcode.captcha.service.impl.DefaultCaptchaServiceImpl
+#com.begcode.captcha.service.impl.RotatePuzzleCaptchaServiceImpl
