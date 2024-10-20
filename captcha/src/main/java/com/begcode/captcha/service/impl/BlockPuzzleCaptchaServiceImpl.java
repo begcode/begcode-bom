@@ -147,7 +147,6 @@ public class BlockPuzzleCaptchaServiceImpl extends AbstractCaptchaService {
     /**
      * 根据模板切图
      *
-     * @throws Exception
      */
     public CaptchaVO pictureTemplatesCut(BufferedImage originalImage, BufferedImage jigsawImage, String jigsawImageBase64) {
         try {

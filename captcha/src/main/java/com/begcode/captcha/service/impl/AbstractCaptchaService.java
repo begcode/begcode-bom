@@ -18,9 +18,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Properties;
 
-/**
- * Created by raodeming on 2019/12/25.
- */
 public abstract class AbstractCaptchaService implements CaptchaService {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
@@ -30,10 +27,10 @@ public abstract class AbstractCaptchaService implements CaptchaService {
 	protected static int HAN_ZI_SIZE = 25;
 
 	protected static int HAN_ZI_SIZE_HALF = HAN_ZI_SIZE / 2;
-    //check校验坐标
+    // check校验坐标
     protected static String REDIS_CAPTCHA_KEY = "RUNNING:CAPTCHA:%s";
 
-    //后台二次校验坐标
+    // 后台二次校验坐标
     protected static String REDIS_SECOND_CAPTCHA_KEY = "RUNNING:CAPTCHA:second-%s";
 
     protected static Long EXPIRESIN_SECONDS = 2 * 60L;
@@ -52,7 +49,7 @@ public abstract class AbstractCaptchaService implements CaptchaService {
 
     protected static String clickWordFontStr = "WenQuanZhengHei.ttf";
 
-    protected Font clickWordFont;//点选文字字体
+    protected Font clickWordFont;// 点选文字字体
 
     protected static String cacheType = "local";
 
@@ -235,9 +232,8 @@ public abstract class AbstractCaptchaService implements CaptchaService {
     /**
      * 解密前端坐标aes加密
      *
-     * @param point
-     * @return
-     * @throws Exception
+     * @param point point
+     * @throws Exception exception
      */
     public static String decrypt(String point, String key) throws Exception {
         return AESUtil.aesDecrypt(point, key);

@@ -26,7 +26,7 @@ public enum CaptchaTypeEnum {
         this.codeDesc = codeDesc;
     }
 
-    public String   getCodeValue(){ return this.codeValue;}
+    public String  getCodeValue(){ return this.codeValue;}
 
     public String getCodeDesc(){ return this.codeDesc;}
 

@@ -4,7 +4,6 @@ import java.text.MessageFormat;
 
 /**
  * 返回应答码
- * @author
  *
  */
 public enum RepCodeEnum {

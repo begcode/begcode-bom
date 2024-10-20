@@ -465,7 +465,7 @@ public class StringUtils {
 
     /**
      * <p>Strips any of a set of characters from the start and end of every
-     * String in an array.</p>
+     * String in an array.
      * Whitespace is defined by {@link Character#isWhitespace(char)}.</p>
      *
      * <p>A new array is returned each time, except for length zero.

@@ -7,8 +7,6 @@ import java.util.Properties;
 
 /**
  * 验证码服务接口
- * @author Raod
- * @date 2020-05-12
  */
 public interface CaptchaService {
     /**
@@ -18,29 +16,25 @@ public interface CaptchaService {
 
     /**
      * 获取验证码
-     * @param captchaVO
-     * @return
+     * @param captchaVO CaptchaVO
      */
     ResponseModel get(CaptchaVO captchaVO);
 
     /**
      * 核对验证码(前端)
-     * @param captchaVO
-     * @return
+     * @param captchaVO captchaVO
      */
     ResponseModel check(CaptchaVO captchaVO);
 
     /**
      * 二次校验验证码(后端)
-     * @param captchaVO
-     * @return
+     * @param captchaVO captchaVO
      */
     ResponseModel verification(CaptchaVO captchaVO);
 
     /***
      * 验证码类型
      * 通过java SPI机制，接入方可自定义实现类，实现新的验证类型
-     * @return
      */
     String captchaType();
 
@@ -49,4 +43,5 @@ public interface CaptchaService {
 	 * @param config 配置项 控制资源清理的粒度
 	 */
 	void destroy(Properties config);
+
 }
