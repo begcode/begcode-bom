@@ -14,13 +14,13 @@ import java.util.Map;
  *
  */
 public class JsonUtil {
-	private static Logger log = LoggerFactory.getLogger(JsonUtil.class);
+	private static final Logger log = LoggerFactory.getLogger(JsonUtil.class);
 	public static List<PointVO> parseArray(String text, Class<PointVO> clazz) {
 		if (text == null) {
 			return null;
 		} else {
 			String[] arr = text.replaceFirst("\\[","")
-					.replaceFirst("\\]","").split("\\}");
+					.replaceFirst("]","").split("}");
 			List<PointVO> ret = new ArrayList<>(arr.length);
 			for (String s : arr) {
 				ret.add(parseObject(s,PointVO.class));
@@ -38,7 +38,7 @@ public class JsonUtil {
 					+ clazz.getSimpleName());
 		}*/
 		try {
-			PointVO ret = clazz.newInstance();
+			PointVO ret = clazz.getDeclaredConstructor().newInstance();
 			return ret.parse(text);
 		}catch (Exception ex){
 			log.error("json解析异常", ex);
@@ -51,9 +51,8 @@ public class JsonUtil {
 		if(object == null) {
 			return "{}";
 		}
-		if(object instanceof PointVO){
-			PointVO t = (PointVO)object;
-			return t.toJsonString();
+		if(object instanceof PointVO t){
+            return t.toJsonString();
 		}
 		if(object instanceof List){
 			List<PointVO> list = (List<PointVO>)object;

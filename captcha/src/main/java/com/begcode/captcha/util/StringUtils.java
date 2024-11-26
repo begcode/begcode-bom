@@ -147,6 +147,7 @@ public class StringUtils {
      * @deprecated Use the clearer named {@link #trimToEmpty(String)}.
      *             Method will be removed in Commons Lang 3.0.
      */
+    @Deprecated
     public static String clean(String str) {
         return str == null ? EMPTY : str.trim();
     }
