@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.begcode</groupId>
         <artifactId>jhipster-dependencies</artifactId>
-        <version>8.6.2</version>
+        <version>8.6.3</version>
         <relativePath>../jhipster-dependencies/pom.xml</relativePath>
     </parent>
 
     <artifactId>captcha</artifactId>
-    <version>8.6.2</version>
+    <version>8.6.3</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
