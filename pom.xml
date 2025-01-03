@@ -16,16 +16,7 @@
     <packaging>pom</packaging>
     <name>BegCode server-side parent POM</name>
     <url>https://github.com/begcode/begcode-bom/</url>
-    <repositories>
-        <repository>
-            <id>aliyun</id>
-            <url>https://maven.aliyun.com/repository/public</url>
-        </repository>
-        <repository>
-            <id>central</id>
-            <url>https://maven.aliyun.com/repository/central</url>
-        </repository>
-    </repositories>
+
     <licenses>
         <license>
             <name>Apache License, version 2.0</name>
