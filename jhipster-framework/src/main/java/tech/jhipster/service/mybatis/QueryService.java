@@ -451,19 +451,19 @@ public interface QueryService<ENTITY> {
         return queryWrapper;
     }
 
-    default void getAggregateAndGroupBy(Filter<?> filter, String fieldName, List<String> selects, List<String> groupBys) {
+    default void getAggregateAndGroupBy(Filter<?> filter, String columnName, String columnAlias, List<String> selects, List<String> groupBys) {
         if (filter.getAggregate() != null) {
             if (filter.getAggregate() instanceof NumberAggregate) {
-                buildAggregate((NumberAggregate) filter.getAggregate(), fieldName, selects);
+                buildAggregate((NumberAggregate) filter.getAggregate(), columnName, columnAlias, selects);
             } else {
-                buildAggregate(filter.getAggregate(), fieldName, selects);
+                buildAggregate(filter.getAggregate(), columnName, columnAlias, selects);
             }
         }
         if (filter.getGroupBy() != null) {
             if (filter.getGroupBy() instanceof DateTimeGroupBy) {
-                buildGroupBy((DateTimeGroupBy) filter.getGroupBy(), fieldName, groupBys, selects);
+                buildGroupBy((DateTimeGroupBy) filter.getGroupBy(), columnName, columnAlias, groupBys, selects);
             } else {
-                buildGroupBy(filter.getGroupBy(), fieldName, groupBys, selects);
+                buildGroupBy(filter.getGroupBy(), columnName, columnAlias, groupBys, selects);
             }
         }
     }

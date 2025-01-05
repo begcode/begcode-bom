@@ -1,6 +1,7 @@
 package tech.jhipster.service.mybatis;
 
 import com.baomidou.mybatisplus.annotation.DbType;
+import org.apache.commons.lang3.StringUtils;
 import tech.jhipster.service.aggregate.Aggregate;
 import tech.jhipster.service.aggregate.DateTimeGroupBy;
 import tech.jhipster.service.aggregate.GroupByExpress;
@@ -10,247 +11,130 @@ import java.util.List;
 import java.util.Objects;
 
 public class AggregateUtil {
-    public static void buildAggregate(Aggregate filter, String field, List<String> selects) {
+    public static void buildAggregate(Aggregate filter, String columnName, String columnAlias, List<String> selects) {
         if (Objects.equals(filter.getCount(), true)) {
-            String onlyFieldName = field.replace("self.", "");
-            selects.add("count(" + field + ") as " + onlyFieldName + "_count");
+            if (StringUtils.isNotBlank(columnAlias)) {
+                selects.add("count(" + columnName + ") as " + columnAlias + "_count");
+            } else {
+                selects.add("count(" + columnName + ") as " + columnName + "_count");
+            }
         }
     }
 
-    public static void buildAggregate(NumberAggregate filter, String field, List<String> selects) {
-        String onlyFieldName = field.replace("self.", "");
+    public static void buildAggregate(NumberAggregate filter, String columnName, String columnAlias, List<String> selects) {
+        String onlyFieldName = columnName.replace("self.", "");
         if (Objects.equals(filter.getSum(), true)) {
-            selects.add("sum(" + field + ") as " + onlyFieldName + "_sum");
+            if (StringUtils.isNotBlank(columnAlias)) {
+                selects.add("sum(" + columnName + ") as " + columnAlias + "_sum");
+            } else {
+                selects.add("sum(" + columnName + ") as " + onlyFieldName + "_sum");
+            }
         }
         if (Objects.equals(filter.getAvg(), true)) {
-            selects.add("avg(" + field + ") as " + onlyFieldName + "_avg");
+            if (StringUtils.isNotBlank(columnAlias)) {
+                selects.add("avg(" + columnName + ") as " + columnAlias);
+            } else {
+                selects.add("avg(" + columnName + ") as " + onlyFieldName + "_avg");
+            }
         }
         if (Objects.equals(filter.getMin(), true)) {
-            selects.add("min(" + field + ") as " + onlyFieldName + "_min");
+            if (StringUtils.isNotBlank(columnAlias)) {
+                selects.add("min(" + columnName + ") as " + columnAlias + "_min");
+            } else {
+                selects.add("min(" + columnName + ") as " + onlyFieldName + "_min");
+            }
         }
         if (Objects.equals(filter.getMax(), true)) {
-            selects.add("max(" + field + ") as " + onlyFieldName + "_max");
+            if (StringUtils.isNotBlank(columnAlias)) {
+                selects.add("max(" + columnName + ") as " + columnAlias + "_max");
+            } else {
+                selects.add("max(" + columnName + ") as " + onlyFieldName + "_max");
+            }
         }
     }
 
-    public static void buildGroupBy(GroupByExpress groupByExpress, String field, List<String> groupBys, List<String> selects) {
+    public static void buildGroupBy(GroupByExpress groupByExpress, String columnName, String columnAlias, List<String> groupBys, List<String> selects) {
         if (Objects.equals(groupByExpress.getJoin(), true)) {
-            groupBys.add(field);
-            selects.add(field);
+            groupBys.add(columnName);
+            if (StringUtils.isNotBlank(columnAlias)) {
+                selects.add(columnName + " as " + columnAlias);
+            } else {
+                selects.add(columnName);
+            }
         }
     }
 
-    public static void buildGroupBy(DateTimeGroupBy groupByExpress, String field, List<String> groupBys, List<String> selects) {
+    public static void buildGroupBy(DateTimeGroupBy groupByExpress, String columnName, String columnAlias, List<String> groupBys, List<String> selects) {
         if (Objects.nonNull(groupByExpress)) {
-            DbType databaseTypeEnum = DbType.MYSQL;
-            String onlyFieldName = field.replace("self.", "");
+            DbType databaseTypeEnum = MybatisUtil.getDatabaseTypeEnum();
+            String onlyFieldName = columnName.replace("self.", "");
             // todo 未能成功获得数据库类型
             boolean isAdded = false;
             if (Objects.equals(groupByExpress.getYear(), true)) {
-                String fieldExpress = "";
-                switch (databaseTypeEnum) {
-                    case MYSQL:
-                        fieldExpress = "year(" + field + ")";
-                        break;
-                    case ORACLE:
-                        fieldExpress = "to_char(" + field + ",'yyyy')";
-                        break;
-                    case SQL_SERVER:
-                        fieldExpress = "datepart(year," + field + ")";
-                        break;
-                    case DB2:
-                        fieldExpress = "year(" + field + ")";
-                        break;
-                    case H2:
-                        fieldExpress = "year(" + field + ")";
-                        break;
-                    case POSTGRE_SQL:
-                        fieldExpress = "date_part('year'," + field + ")";
-                        break;
-                    case HSQL:
-                        fieldExpress = "year(" + field + ")";
-                        break;
-                    case SQLITE:
-                        fieldExpress = "strftime('%Y'," + field + ")";
-                        break;
-                    case DM:
-                        fieldExpress = "year(" + field + ")";
-                        break;
-                    case KINGBASE_ES:
-                        fieldExpress = "year(" + field + ")";
-                        break;
-                    case GAUSS:
-                        fieldExpress = "to_char(" + field + ",'yyyy')";
-                        break;
-                    case GBASE:
-                        fieldExpress = "year(" + field + ")";
-                        break;
-                    case OCEAN_BASE:
-                        fieldExpress = "year(" + field + ")";
-                        break;
-                    case OSCAR:
-                        fieldExpress = "year(" + field + ")";
-                        break;
-                    default:
-                        throw new RuntimeException("不支持的数据库类型");
+                String fieldExpress = switch (databaseTypeEnum) {
+                    case MYSQL, H2, HSQL, DB2, GBASE, OCEAN_BASE, OSCAR, DM, KINGBASE_ES -> "year(" + columnName + ")";
+                    case ORACLE, GAUSS -> "to_char(" + columnName + ",'yyyy')";
+                    case SQL_SERVER -> "datepart(year," + columnName + ")";
+                    case POSTGRE_SQL -> "date_part('year'," + columnName + ")";
+                    case SQLITE -> "strftime('%Y'," + columnName + ")";
+                    default -> throw new RuntimeException("不支持的数据库类型: " + databaseTypeEnum);
+                };
+                if (StringUtils.isNotBlank(columnAlias)) {
+                    selects.add(fieldExpress + " as " + columnAlias + "_year");
+                } else {
+                    selects.add(fieldExpress + " as " + onlyFieldName + "_year");
                 }
-                selects.add(fieldExpress + " as " + onlyFieldName + "_year");
                 groupBys.add(onlyFieldName + "_year");
                 isAdded = true;
             }
             if (Objects.equals(groupByExpress.getMonth(), true)) {
-                String fieldExpress = "";
-                switch (databaseTypeEnum) {
-                    case MYSQL:
-                        fieldExpress = "month(" + field + ")";
-                        break;
-                    case ORACLE:
-                        fieldExpress = "to_char(" + field + ",'mm')";
-                        break;
-                    case SQL_SERVER:
-                        fieldExpress = "datepart(month," + field + ")";
-                        break;
-                    case DB2:
-                        fieldExpress = "month(" + field + ")";
-                        break;
-                    case H2:
-                        fieldExpress = "month(" + field + ")";
-                        break;
-                    case POSTGRE_SQL:
-                        fieldExpress = "date_part('month'," + field + ")";
-                        break;
-                    case HSQL:
-                        fieldExpress = "month(" + field + ")";
-                        break;
-                    case SQLITE:
-                        fieldExpress = "strftime('%m'," + field + ")";
-                        break;
-                    case DM:
-                        fieldExpress = "month(" + field + ")";
-                        break;
-                    case KINGBASE_ES:
-                        fieldExpress = "month(" + field + ")";
-                        break;
-                    case GAUSS:
-                        fieldExpress = "to_char(" + field + ",'mm')";
-                        break;
-                    case GBASE:
-                        fieldExpress = "month(" + field + ")";
-                        break;
-                    case OCEAN_BASE:
-                        fieldExpress = "month(" + field + ")";
-                        break;
-                    case OSCAR:
-                        fieldExpress = "month(" + field + ")";
-                        break;
-                    default:
-                        throw new RuntimeException("不支持的数据库类型");
+                String fieldExpress = switch (databaseTypeEnum) {
+                    case MYSQL, H2, HSQL, DB2, GBASE, OCEAN_BASE, OSCAR, DM, KINGBASE_ES -> "month(" + columnName + ")";
+                    case ORACLE, GAUSS -> "to_char(" + columnName + ",'mm')";
+                    case SQL_SERVER -> "datepart(month," + columnName + ")";
+                    case POSTGRE_SQL -> "date_part('month'," + columnName + ")";
+                    case SQLITE -> "strftime('%m'," + columnName + ")";
+                    default -> throw new RuntimeException("不支持的数据库类型: " + databaseTypeEnum);
+                };
+                if (StringUtils.isNotBlank(columnAlias)) {
+                    selects.add(fieldExpress + " as " + columnAlias + "_month");
+                } else {
+                    selects.add(fieldExpress + " as " + onlyFieldName + "_month");
                 }
-                selects.add(fieldExpress + " as " + onlyFieldName + "_month");
                 groupBys.add(onlyFieldName + "_month");
                 isAdded = true;
             }
             if (Objects.equals(groupByExpress.getDay(), true)) {
-                String fieldExpress = "";
-                switch (databaseTypeEnum) {
-                    case MYSQL:
-                        fieldExpress = "day(" + field + ")";
-                        break;
-                    case ORACLE:
-                        fieldExpress = "to_char(" + field + ",'dd')";
-                        break;
-                    case SQL_SERVER:
-                        fieldExpress = "datepart(day," + field + ")";
-                        break;
-                    case DB2:
-                        fieldExpress = "day(" + field + ")";
-                        break;
-                    case H2:
-                        fieldExpress = "day(" + field + ")";
-                        break;
-                    case POSTGRE_SQL:
-                        fieldExpress = "date_part('day'," + field + ")";
-                        break;
-                    case HSQL:
-                        fieldExpress = "day(" + field + ")";
-                        break;
-                    case SQLITE:
-                        fieldExpress = "strftime('%d'," + field + ")";
-                        break;
-                    case DM:
-                        fieldExpress = "day(" + field + ")";
-                        break;
-                    case KINGBASE_ES:
-                        fieldExpress = "day(" + field + ")";
-                        break;
-                    case GAUSS:
-                        fieldExpress = "to_char(" + field + ",'dd')";
-                        break;
-                    case GBASE:
-                        fieldExpress = "day(" + field + ")";
-                        break;
-                    case OCEAN_BASE:
-                        fieldExpress = "day(" + field + ")";
-                        break;
-                    case OSCAR:
-                        fieldExpress = "day(" + field + ")";
-                        break;
-                    default:
-                        throw new RuntimeException("不支持的数据库类型");
+                String fieldExpress = switch (databaseTypeEnum) {
+                    case MYSQL, H2, HSQL, DB2, GBASE, OCEAN_BASE, OSCAR, DM, KINGBASE_ES -> "day(" + columnName + ")";
+                    case ORACLE, GAUSS -> "to_char(" + columnName + ",'dd')";
+                    case SQL_SERVER -> "datepart(day," + columnName + ")";
+                    case POSTGRE_SQL -> "date_part('day'," + columnName + ")";
+                    case SQLITE -> "strftime('%d'," + columnName + ")";
+                    default -> throw new RuntimeException("不支持的数据库类型: " + databaseTypeEnum);
+                };
+                if (StringUtils.isNotBlank(columnAlias)) {
+                    selects.add(fieldExpress + " as " + columnAlias + "_day");
+                } else {
+                    selects.add(fieldExpress + " as " + onlyFieldName + "_day");
                 }
-                selects.add(fieldExpress + " as " + onlyFieldName + "_day");
                 groupBys.add(onlyFieldName + "_day");
                 isAdded = true;
             }
             if (Objects.equals(groupByExpress.getHour(), true)) {
-                String hourFieldExpress = "";
-                switch (databaseTypeEnum) {
-                    case MYSQL:
-                        hourFieldExpress = "hour(" + field + ")";
-                        break;
-                    case ORACLE:
-                        hourFieldExpress = "to_char(" + field + ",'hh24')";
-                        break;
-                    case SQL_SERVER:
-                        hourFieldExpress = "datepart(hour," + field + ")";
-                        break;
-                    case DB2:
-                        hourFieldExpress = "hour(" + field + ")";
-                        break;
-                    case H2:
-                        hourFieldExpress = "hour(" + field + ")";
-                        break;
-                    case POSTGRE_SQL:
-                        hourFieldExpress = "date_part('hour'," + field + ")";
-                        break;
-                    case HSQL:
-                        hourFieldExpress = "hour(" + field + ")";
-                        break;
-                    case SQLITE:
-                        hourFieldExpress = "strftime('%H'," + field + ")";
-                        break;
-                    case DM:
-                        hourFieldExpress = "hour(" + field + ")";
-                        break;
-                    case KINGBASE_ES:
-                        hourFieldExpress = "hour(" + field + ")";
-                        break;
-                    case GAUSS:
-                        hourFieldExpress = "to_char(" + field + ",'hh24')";
-                        break;
-                    case GBASE:
-                        hourFieldExpress = "hour(" + field + ")";
-                        break;
-                    case OCEAN_BASE:
-                        hourFieldExpress = "hour(" + field + ")";
-                        break;
-                    case OSCAR:
-                        hourFieldExpress = "hour(" + field + ")";
-                        break;
-                    default:
-                        throw new RuntimeException("不支持的数据库类型");
+                String hourFieldExpress = switch (databaseTypeEnum) {
+                    case MYSQL, H2, HSQL, DB2, GBASE, OCEAN_BASE, OSCAR, DM, KINGBASE_ES -> "hour(" + columnName + ")";
+                    case ORACLE, GAUSS -> "to_char(" + columnName + ",'hh24')";
+                    case SQL_SERVER -> "datepart(hour," + columnName + ")";
+                    case POSTGRE_SQL -> "date_part('hour'," + columnName + ")";
+                    case SQLITE -> "strftime('%H'," + columnName + ")";
+                    default -> throw new RuntimeException("不支持的数据库类型: " + databaseTypeEnum);
+                };
+                if (StringUtils.isNotBlank(columnAlias)) {
+                    selects.add(hourFieldExpress + " as " + columnAlias + "_hour");
+                } else {
+                    selects.add(hourFieldExpress + " as " + onlyFieldName + "_hour");
                 }
-                selects.add(hourFieldExpress + " as " + onlyFieldName + "_hour");
                 groupBys.add(onlyFieldName + "_hour");
                 isAdded = true;
             }
