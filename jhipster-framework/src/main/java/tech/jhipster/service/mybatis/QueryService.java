@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import static com.diboot.core.binding.QueryBuilder.criteriaToWrapper;
 import static com.diboot.core.binding.QueryBuilder.criteriaToWrapperNoJoin;
@@ -328,7 +329,14 @@ public interface QueryService<ENTITY> {
                 .stream()
                 .findFirst()
                 .orElseThrow();
-            Map<String, Object> fieldMap = queryWrapperMapEntry.getValue();
+            Map<String, Object> fieldMap = queryWrapperMapEntry.getValue().entrySet().stream()
+                .filter(entry -> {
+                    Map<String, Object> stringObjectMap = BeanUtil.beanToMap(entry.getValue(), false, true);
+                    stringObjectMap.remove("aggregate");
+                    stringObjectMap.remove("groupBy");
+                    return !stringObjectMap.isEmpty();
+                })
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
             if (MapUtils.isNotEmpty(fieldMap)) {
                 if (queryWrapper == null) {
                     queryWrapper = queryWrapperMapEntry.getKey();

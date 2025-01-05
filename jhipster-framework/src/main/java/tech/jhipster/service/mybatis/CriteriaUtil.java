@@ -29,6 +29,10 @@ public class CriteriaUtil {
             Field[] fields = criteria.getClass().getDeclaredFields();
             for (Field field : fields) {
                 if (field.isAnnotationPresent(BindQuery.class)) {
+                    BindQuery bindQuery = field.getAnnotation(BindQuery.class);
+                    if (bindQuery.ignore()) {
+                        continue;
+                    }
                     field.setAccessible(true);
                     Object value = field.get(criteria);
                     if (value != null) {
