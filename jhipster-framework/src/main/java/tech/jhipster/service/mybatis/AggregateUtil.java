@@ -16,7 +16,8 @@ public class AggregateUtil {
             if (StringUtils.isNotBlank(columnAlias)) {
                 selects.add("count(" + columnName + ") as " + columnAlias + "_count");
             } else {
-                selects.add("count(" + columnName + ") as " + columnName + "_count");
+                String onlyFieldName = columnName.replace("self.", "");
+                selects.add("count(" + columnName + ") as " + onlyFieldName + "_count");
             }
         }
     }
