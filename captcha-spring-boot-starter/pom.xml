@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.begcode</groupId>
         <artifactId>jhipster-dependencies</artifactId>
-        <version>8.6.4</version>
+        <version>8.6.5</version>
         <relativePath>../jhipster-dependencies/pom.xml</relativePath>
     </parent>
 
     <artifactId>captcha-spring-boot-starter</artifactId>
-    <version>8.6.4</version>
+    <version>8.6.5</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.begcode</groupId>
             <artifactId>captcha</artifactId>
-            <version>8.6.4</version>
+            <version>8.6.5</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
